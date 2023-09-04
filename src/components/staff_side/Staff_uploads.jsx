@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import Staff_Navbar from './Staff_Navbar/Staff_Navbar';
 import { Link, useLocation } from 'react-router-dom';
-import './staff_upload.css';
+import './staff_uploads.css';
 import axiosInstance from '../../api/axios';
 
 function Staff_uploads() {
