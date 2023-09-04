@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios'; // Import axios for making HTTP requests
-import './User_navbar.css';
+import './User_Navbar.css';
 import { BrowserRouter, Routes, Route, NavLink, Link, useNavigate, useLocation } from 'react-router-dom';
 import Notification from '../Notification';
 import { Form, FormControl, Button } from 'react-bootstrap';
