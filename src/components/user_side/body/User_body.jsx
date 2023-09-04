@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from "react";
 import './User_body.css';
-import WorkImage1 from './bodyimg/work-3.jpg';
-import WorkImage2 from './bodyimg/work-4.jpg';
-import WorkImage3 from './bodyimg/work-5.jpg';
+
 import User_body_inside from "./User_body_inside";
-import User_body_last from "./bodyimg/user_body_last";
-import axios from "axios";
-import Button from 'react-bootstrap/Button';
+
+
 import Modal from 'react-bootstrap/Modal';
 import axiosInstance from "../../../api/axios";
 

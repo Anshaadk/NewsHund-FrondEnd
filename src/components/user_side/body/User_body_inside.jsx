@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './bodyimg/user_body_inside.css'
-import axios from 'axios'
+
 import { Link, useNavigate } from 'react-router-dom';
 import User_newsbuy from '../User_newsbuy';
 import { useSelector } from 'react-redux';
