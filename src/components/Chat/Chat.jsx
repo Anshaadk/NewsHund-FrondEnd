@@ -2,19 +2,19 @@ import React, { useState, useEffect, useRef } from 'react';
 import { w3cwebsocket } from 'websocket';
 import axios from 'axios';
 import './ChatApp.css';
-import WebSocketManager from './WebSocketManager';
-import User_Navbar from '../user_side/navbar/User_NavBar';
-import User_Footer from '../user_side/Footer/User_Footer';
+import axiosInstance from '../../api/axios';
+
 
 const Chat = ({ currentUser, selectedUser, users }) => {
   const [socket, setSocket] = useState(null);
   const [messages, setMessages] = useState([]);
   const [messageInput, setMessageInput] = useState('');
   const messagesEndRef = useRef(null);
+  const wssockets=import.meta.env.VITE_WS_KEY
 
   useEffect(() => {
     // Set up the WebSocket connection
-    const newSocket = new w3cwebsocket(`ws://localhost:8000/ws/chat/${selectedUser}/`);
+    const newSocket = new w3cwebsocket(`${wssockets}/ws/chat/${selectedUser}/`);
     setSocket(newSocket);
 
     // Clean up the WebSocket connection on unmount
@@ -27,7 +27,7 @@ const Chat = ({ currentUser, selectedUser, users }) => {
 
   const fetchChatMessages = async () => {
     try {
-      const response = await axios.get(`http://127.0.0.1:8000/user_side/api/chat/${selectedUser}/`);
+      const response = await axiosInstance.get(`/user_side/api/chat/${selectedUser}/`);
       if (response.status === 200) {
         setMessages(response.data);
       }
@@ -144,7 +144,7 @@ const ChatApp = () => {
 
     useEffect(() => {
         // Fetch current user's data
-        axios.get('http://localhost:8000/user_side/api/userlisting/')
+        axiosInstance.get('/user_side/api/userlisting/')
             .then(response => {
                 const userData = response.data.find(user => user.id == userId);
                 console.log(userData);
