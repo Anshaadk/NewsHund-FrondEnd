@@ -8,6 +8,7 @@
   }
   
   .nav-buttons-container .btn {
+    
     width: 30%;
     margin: 5px;
     font-size: 16px;
@@ -51,6 +52,7 @@
   }
   
   .table {
+    
     width: 100%;
     border-collapse: collapse;
   }
