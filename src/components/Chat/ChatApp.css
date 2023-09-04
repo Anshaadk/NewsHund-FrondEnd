@@ -1,0 +1,324 @@
+/* Chat container */
+.chat-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Chat heading */
+.chat-heading {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+/* Chat messages */
+.chat-messages {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+/* Individual message */
+.message {
+  display: flex;
+  margin-bottom: 15px;
+}
+
+.message-avatar img {
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+}
+
+.message-content {
+  margin-left: 10px;
+}
+
+.message-box {
+  padding: 10px;
+  border-radius: 10px;
+  word-wrap: break-word;
+}
+
+.own-box {
+  background-color: #8ae68a;
+  color: white;
+}
+
+.other-box {
+  background-color: #eaeaea;
+}
+
+.message-sender {
+  font-size: 12px;
+  color: #666;
+}
+
+/* Message input */
+.message-input {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.message-input input {
+  flex: 1;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.message-input button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+/* Avatar alignment */
+.avatar-image.own-avatar {
+  float: right;
+  margin-left: 10px;
+}
+
+.avatar-image.other-avatar {
+  float: left;
+  margin-right: 10px;
+}
+
+/* Sender name alignment */
+.message-sender.own-sender {
+  text-align: right;
+}
+
+.message-sender.other-sender {
+  text-align: left;
+}
+
+/* Message container alignment */
+.message-content.own-content {
+  text-align: right;
+}
+
+.message-content.other-content {
+  text-align: left;
+}
+
+
+/* Add these styles to your ChatApp.css file */
+
+/* Chat container */
+.chat-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #f7f7f7;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Chat heading */
+.chat-heading {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Chat messages */
+.chat-messages {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+/* Individual message */
+.message {
+  display: flex;
+  margin-bottom: 15px;
+  align-items: flex-start;
+}
+
+.message-avatar img {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+}
+
+.message-content {
+  margin-left: 10px;
+}
+
+.message-box {
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  color: #333;
+}
+
+.own-box {
+  background-color: #8ae68a;
+  color: #fff;
+}
+
+.other-box {
+  background-color: #f0f0f0;
+}
+
+.message-sender {
+  font-size: 12px;
+  color: #999;
+}
+
+/* Message input */
+.message-input {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.message-input input {
+  flex: 1;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: #f0f0f0;
+  color: #333;
+  font-size: 14px;
+  outline: none;
+}
+
+.message-input button {
+  margin-left: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 15px;
+  font-size: 14px;
+  cursor: pointer;
+  outline: none;
+}
+
+.message-input button:hover {
+  background-color: #0056b3;
+}
+
+/* Avatar alignment */
+.avatar-image.own-avatar {
+  float: right;
+  margin-left: 10px;
+}
+
+.avatar-image.other-avatar {
+  float: left;
+  margin-right: 10px;
+}
+
+/* Sender name alignment */
+.message-sender.own-sender {
+  text-align: right;
+}
+
+.message-sender.other-sender {
+  text-align: left;
+}
+
+/* Message container alignment */
+.message-content.own-content {
+  text-align: right;
+}
+
+.message-content.other-content {
+  text-align: left;
+}
+
+
+/* Add these styles to your ChatApp.css file */
+
+/* Member selection area */
+.member-selection {
+  background-color: #f7f7f7;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.member-heading {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.member-list {
+  list-style: none;
+  padding: 0;
+}
+
+.member-item {
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.member-item:hover {
+  background-color: #f0f0f0;
+  transform: translateY(-2px);
+}
+
+.member-avatar img {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+}
+
+.member-details {
+  flex: 1;
+  margin-left: 10px;
+}
+
+.member-username {
+  font-weight: bold;
+  color: #333;
+}
+
+.member-status {
+  font-size: 14px;
+  color: #999;
+}
+
+.badge {
+  background-color: #dc3545;
+  color: #fff;
+  border-radius: 50%;
+  padding: 6px 10px;
+  font-size: 12px;
+}
+
+.badge.float-end {
+  margin-left: auto;
+}
+
+/* Adjust the existing container styles */
+.container {
+  max-width: 1200px;
+}
+
+/* Adjust the existing chat-container styles */
+.chat-container {
+  margin-top: 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+/* ... (other existing styles) */

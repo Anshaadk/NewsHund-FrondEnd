@@ -1,0 +1,27 @@
+
+
+ 
+  
+/* Styles for free cards */
+.free-card {
+    background-color: lightgreen;
+  }
+  
+  /* Styles for premium cards */
+  .premium-card {
+    background-color: lightblue;
+  }
+
+  .modal-image {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 10px auto;
+  }
+
+  .news-description {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-top: 20px;
+    color: #333;
+  }

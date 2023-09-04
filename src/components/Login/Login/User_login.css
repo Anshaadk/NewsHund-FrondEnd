@@ -1,0 +1,211 @@
+/* Importing fonts from Google */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+/* Reseting */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+.bubbles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+.circle {
+    position: absolute;
+    z-index: -100;
+    border-radius: 50%;
+    background-color: rgb(235, 235, 235);
+    animation: flying 7s infinite ease-in;
+    opacity: 0.5;
+    bottom: -100px;
+}
+
+@keyframes flying {
+    0% {
+        bottom: -100px;
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(100px);
+    }
+
+    100% {
+        bottom: 1080px;
+        transform: translateX(-250px);
+    }
+}
+
+.circle:nth-child(1) {
+    width: 60px;
+    height: 60px;
+    left: 20%;
+    animation-delay: 5s;
+}
+
+.circle:nth-child(2) {
+    width: 100px;
+    height: 100px;
+    left: 40%;
+    animation-delay: 6s;
+}
+
+.circle:nth-child(3) {
+    width: 65px;
+    height: 65px;
+    animation-delay: 4s;
+}
+
+.circle:nth-child(4) {
+    width: 80px;
+    height: 80px;
+    left: 80%;
+    animation-delay: 9s;
+}
+
+
+.containers {
+    margin: 50px auto;
+}
+
+.containers .content {
+    max-width: 42%;
+    margin-right: 30px;
+}
+
+.containers .fs-5 {
+    font-size: 1.4rem !important;
+    font-weight: 200;
+}
+
+.containers .text-grey {
+    color: #e8e8e8;
+}
+
+.containers .text {
+    font-weight: 100;
+    font-size: 0.9rem;
+    line-height: 1.6rem;
+}
+
+.containers .btn {
+    border: none;
+    box-shadow: 0 2px 3px #505050b0;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 1.3px;
+}
+
+.containers .content .btn.btn-primary {
+    color: #f2f2f2;
+    background-color: #14ca72;
+}
+
+.containers .content .btn.btn-primary:hover {
+    background-color: #21a063;
+}
+
+.containers .btn.btn-default {
+    background-color: #fff;
+}
+
+.containers .btn.btn-default:hover {
+    background-color: #f2f2f2;
+}
+
+.containers .btn img {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+
+.containers .card {
+    margin-left: 40px;
+    min-width: 320px;
+    max-width: 400px;
+    height: 400px;
+    border: none;
+    overflow: hidden;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px #975ccfa1;
+}
+
+.containers .card .card-heads {
+    padding: 15px 20px;
+    overflow-x: hidden;
+    box-shadow: 0 2px 3px #1f1f1f33;
+    height: 140px;
+}
+
+.containers .card .card-forms {
+    height: 100%;
+    padding: 15px 20px;
+    background-color: #eeeeee;
+}
+
+.containers .card .card-forms .input-fields {
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 20px;
+    padding: 0.1rem 0.3rem;
+    border-radius: 4px;
+    box-shadow: 0 2px 3px #1f1f1f33;
+}
+
+.containers .card .card-forms .input-fields .form-controls {
+    box-shadow: none;
+    border: none;
+}
+
+.containers .card .card-forms .input-fields input:focus::placeholder {
+    color: #fff;
+}
+
+.containers .card .fs-08 {
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.containers .card .card-forms .btn {
+    width: 100px;
+}
+
+.containers .card .card-forms .btn.btn.btn-primary {
+    background-color: #080708;
+}
+
+.containers .card .card-forms .btn.btn.btn-primary:hover {
+    background-color: #161319;
+}
+
+@media (max-width: 767.5px) {
+    .containers .content {
+        max-width: 100%;
+        margin-bottom: 30px;
+        padding: 15px;
+        margin-right: 0px;
+    }
+
+    .containers .card {
+        margin-left: 0;
+    }
+
+    .bubbles {
+        display: none;
+    }
+}
+

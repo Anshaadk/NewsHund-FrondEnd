@@ -1,0 +1,120 @@
+
+  .wallet-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f5f5f5;
+  }
+
+  .wallet-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 350px;
+  }
+
+  .wallet-heading {
+    font-size: 24px;
+    color: #333333;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  .current-balance {
+    font-size: 18px;
+    color: #777777;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .top-up-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .top-up-input {
+    padding: 8px;
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+    width: 70%;
+  }
+
+  .top-up-button {
+    padding: 8px 16px;
+    border: none;
+    background-color: #007bff;
+    color: #ffffff;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .top-up-button:hover {
+    background-color: #0056b3;
+  }
+
+  .transaction-history {
+    border-top: 1px solid #dddddd;
+    margin-top: 20px;
+    padding-top: 20px;
+  }
+
+  .transaction-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .transaction-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+
+  .transaction-item.received {
+    background-color: #d4edda;
+  }
+
+  .transaction-item.sent {
+    background-color: #f8d7da;
+  }
+
+  .transaction-icon {
+    font-size: 18px;
+  }
+
+  .username {
+    font-weight: bold;
+  }
+
+  .pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  .pagination-button {
+    padding: 8px 16px;
+    border: none;
+    background-color: #007bff;
+    color: #ffffff;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 0 5px;
+  }
+
+  .pagination-button:disabled {
+    background-color: #dddddd;
+    cursor: not-allowed;
+  }
+

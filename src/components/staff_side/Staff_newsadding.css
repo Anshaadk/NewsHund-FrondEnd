@@ -1,0 +1,153 @@
+
+.custom-form {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .custom-form label {
+    font-weight: bold;
+  }
+
+  .custom-form textarea,
+  .custom-form input[type="text"],
+  .custom-form input[type="file"],
+  .custom-form input[type="radio"] {
+    border: none;
+    border-radius: 8px;
+    background-color: #f2f2f2;
+    padding: 12px;
+    width: 100%;
+    transition: background-color 0.2s ease;
+  }
+
+  .custom-form textarea:focus,
+  .custom-form input[type="text"]:focus,
+  .custom-form input[type="file"]:focus,
+  .custom-form input[type="radio"]:focus {
+    background-color: #e1e1e1;
+    outline: none;
+    box-shadow: 0 0 0 2px #80bdff;
+  }
+
+  .custom-form .form-check-label::before {
+    content: "";
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+    border: 2px solid #6c757d;
+    border-radius: 50%;
+    vertical-align: middle;
+    background-color: transparent;
+    transition: background-color 0.2s ease;
+  }
+
+  .custom-form .form-check-input:checked + .form-check-label::before {
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+
+  .custom-form .form-check-input:checked + .form-check-label::after {
+    content: "";
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #fff;
+  }
+
+  .custom-form .btn-primary {
+    padding: 12px 30px;
+    border-radius: 10px;
+    background-color: #007bff;
+    border-color: #007bff;
+    transition: background-color 0.2s ease;
+  }
+
+  .custom-form .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+  }
+
+  .custom-form .form-group:not(:last-child) {
+    margin-bottom: 30px;
+  }
+
+  /* Media query for small screens */
+  @media (max-width: 576px) {
+    .custom-form .form-check {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .custom-form .btn-primary {
+      width: 100%;
+    }
+  }
+
+  .custom-form input::placeholder,
+  .custom-form textarea::placeholder {
+    color: #6c757d;
+    font-style: italic;
+  }
+
+  .custom-form input:placeholder-shown,
+  .custom-form textarea:placeholder-shown {
+    background-color: #f8f9fa;
+  }
+
+
+  
+
+  /* StaffFollowers.css */
+
+/* Style for the whole table */
+.custom-table {
+  width: 80%;
+  margin: 0 auto;
+  border-collapse: collapse;
+  border: 1px solid #ccc;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Style for table header */
+.custom-table thead th {
+  background-color: #f2f2f2;
+  padding: 10px;
+  font-weight: bold;
+  text-align: left;
+}
+
+/* Style for table rows */
+.custom-table tbody td {
+  padding: 15px;
+  border-bottom: 1px solid #ccc;
+}
+
+/* Style for profile images */
+.profile-image {
+  width: 45px;
+  height: 45px;
+}
+
+/* Style for Edit button */
+.btn-rounded {
+  border-radius: 20px;
+}
+
+/* Style for Edit button in primary color */
+.btn-primary {
+  background-color: #007bff;
+  color: white;
+  border-color: #007bff;
+}
+
+/* Responsive centering */
+.d-flex.justify-content-center {
+  display: flex;
+  justify-content: center;
+}

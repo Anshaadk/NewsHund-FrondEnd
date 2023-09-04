@@ -1,0 +1,170 @@
+/* Admin_Navbar.css */
+.custom-navbar {
+    padding: 20px 0;
+    transition: all 0.3s;
+  }
+  
+  .custom-navbar .navbar-brand {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+  }
+  
+  .custom-navbar .navbar-nav .nav-link {
+    color: white;
+    font-size: 18px;
+    padding: 10px 20px;
+    transition: color 0.3s;
+  }
+  
+  .custom-navbar .navbar-nav .nav-link:hover {
+    color: lightgray;
+  }
+  
+  .custom-navbar .navbar-text .nav-link {
+    color: white;
+    font-size: 18px;
+    padding: 10px 20px;
+    border: 1px solid white;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .custom-navbar .navbar-text .nav-link:hover {
+    background-color: white;
+    color: #333;
+  }
+
+  /* AdminCategory.css */
+.admin-category-container {
+    padding: 20px;
+    margin: 0 auto;
+    max-width: 1200px;
+  }
+  
+  .admin-category-container button {
+    font-size: 18px;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+  }
+  
+  .admin-category-container table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 16px;
+  }
+  
+  .admin-category-container th,
+  .admin-category-container td {
+    padding: 12px 15px;
+    border: 1px solid #ccc;
+    text-align: left;
+  }
+  
+  .admin-category-container th {
+    background-color: #f0f0f0;
+  }
+  
+  .admin-category-container td button {
+    font-size: 16px;
+    padding: 8px 12px;
+  }
+  
+  
+  /* Example CSS for chart styling */
+.chart-container {
+    border: 1px solid #ddd;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Example CSS for button styling */
+  .custom-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .custom-button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Example CSS for card styling */
+  .custom-card {
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .rounded-table {
+    border: 1px solid #ddd;
+    border-collapse: collapse;
+    width: 100%;
+    border-radius: 10px; /* Adjust the value for the desired level of rounding */
+    overflow: hidden; /* Clip content within rounded borders */
+  }
+  
+  .rounded-table th,
+  .rounded-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  .rounded-table th {
+    background-color: #007bff;
+    color: #fff;
+    font-weight: bold;
+  }
+/* Styling for the rounded and attractive table */
+.rounded-attractive-table {
+    border-collapse: collapse;
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .rounded-attractive-table th,
+  .rounded-attractive-table td {
+    border: 2px solid #007bff; /* Bold border */
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .rounded-attractive-table th {
+    background-color: #f8f9fa;
+    font-weight: bold;
+  }
+  
+  .rounded-attractive-table tbody tr:nth-child(even) {
+    background-color: #f0f0f0;
+  }
+  
+  .rounded-attractive-table tbody tr:hover {
+    background-color: #cce5ff; /* Hover color */
+  }
+  
+  /* Styling for the 'View' button */
+  .card-pop-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .card-pop-button:hover {
+    background-color: #0056b3;
+  }
+    
+

@@ -1,0 +1,41 @@
+/* Add your custom CSS styles here */
+
+.form-containeroo {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+  }
+  
+  .form-groupoo {
+    margin-bottom: 20px;
+  }
+  
+  .form-labeloo {
+    font-weight: bold;
+  }
+  
+  .form-controloo {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .btn-primaryoo {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  .btn-primaryoo:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Add more custom styles as needed */
+  

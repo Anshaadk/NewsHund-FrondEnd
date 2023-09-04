@@ -1,0 +1,14 @@
+.bdy {
+  position: absolute;
+  backdrop-filter: blur(5px); /* Adjust the blur radius as needed */
+  background-color: rgba(240, 248, 255, 0.445);
+  z-index: 7;
+  width: 100vw;
+  height: 86vh;
+}
+
+.bdee {
+    background-color: rgba(0.5, .5, .5, 0.5);
+}
+  
+  

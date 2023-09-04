@@ -1,0 +1,16 @@
+.card_pop{
+    
+    
+    background-color:white;
+    color: black;
+    transition: transform 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .card_pop:hover {
+    transform: scale(1.1);
+    z-index: 1;
+  }
+
+  

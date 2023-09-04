@@ -1,0 +1,295 @@
+
+body {
+    font-family: "Poppins", sans-serif;
+}
+
+.textColorb {
+    color: #030F27;
+}
+
+.navbarBgDark {
+    background: #030F27;
+}
+
+.navbar-navsb .nav-linkb.active {
+    color: #EDA72F;
+}
+
+.nav-linksb:hover {
+    color: #EDA72F;
+}
+
+.nav-linkb {
+    color: #fff;
+}
+
+.getBtnb {
+    color: #fff;
+}
+
+.sideLineb {
+    border-right: 1px solid #030F27;
+}
+
+.iconHeightb {
+    height: 24px;
+    width: 24px;
+}
+
+@media screen and (min-width: 992px) {
+    .sideLineb {
+        border-right: none;
+    }
+
+    .iconHeightb {
+        height: 46px;
+        width: 46px;
+    }
+}
+
+/* image 1 */
+
+.logoimg {
+    width: 166px;
+    height: 114px;
+    left: 63px;
+    top: 15px;
+    background-image: url('logo.png');
+
+  }
+
+  .cardpp {
+    display: flex;
+    flex-direction: column;
+    width: 18rem;
+  }
+  
+  .card-img-top {
+    width: 100%;
+    height: auto;
+  }
+  
+  .card-body {
+    flex: 1;
+  }
+  
+/* User_navbar.css */
+/* Add these styles to your existing User_navbar.css file or create a new one */
+
+/* Style the search bar */
+.navbarBgDark .navbar .navbar-collapse .form-inline .form-control {
+    border-color: #28a745; /* Green border color */
+    color: #28a745; /* Green text color */
+  }
+  
+  /* Style the search button */
+  .navbarBgDark .navbar .navbar-collapse .form-inline .btn-outline-success {
+    border-color: #28a745; /* Green border color */
+    color: #28a745; /* Green text color */
+  }
+  
+  /* Style the navigation links */
+  .navbarBgDark .navbar .navbar-nav .nav-linkb {
+    color: #ffffff; /* White text color for navigation links */
+    font-weight: bold;
+    transition: color 0.3s ease-in-out;
+  }
+  
+  .navbarBgDark .navbar .navbar-nav .nav-linkb:hover {
+    color: #28a745; /* Green text color on hover */
+  }
+  
+  /* Style the dropdown links */
+  .navbarBgDark .navbar .navbar-nav .dropdown-menu .dropdown-item {
+    color: #000000; /* Black text color for dropdown items */
+    font-weight: bold;
+  }
+  
+  .navbarBgDark .navbar .navbar-nav .dropdown-menu .dropdown-item:hover {
+    background-color: #28a745; /* Green background color on hover */
+    color: #ffffff; /* White text color on hover */
+  }
+  
+  /* Style the user profile dropdown */
+  .navbarBgDark .navbar .dropdown-menu.card_pop {
+    background-color: #f8f9fa; /* Light gray background color */
+    border: none;
+  }
+  
+  .navbarBgDark .navbar .dropdown-menu.card_pop a {
+    color: #000000; /* Black text color for dropdown items */
+  }
+  
+  .navbarBgDark .navbar .dropdown-menu.card_pop a:hover {
+    background-color: #28a745; /* Green background color on hover */
+    color: #ffffff; /* White text color on hover */
+  }
+  
+  /* Style the chat button */
+  .navbarBgDark .navbar .text-white .btn.getBtnb {
+    background-color: #28a745; /* Green background color for the chat button */
+    border-color: #28a745; /* Green border color for the chat button */
+  }
+  
+  .navbarBgDark .navbar .text-white .btn.getBtnb:hover {
+    background-color: #218838; /* Darker green background color on hover */
+    border-color: #218838; /* Darker green border color on hover */
+  }
+/* User_navbar.css */
+/* Add these styles to your existing User_navbar.css file or create a new one */
+
+/* Style the search bar */
+.navbarBgDark .form-inline .form-control {
+    border-color: #28a745; /* Green border color */
+    color: #28a745; /* Green text color */
+    font-size: 14px; /* Adjust the font size */
+    padding: 4px 8px; /* Adjust padding */
+  }
+  
+  /* Style the search button */
+  .navbarBgDark .btn-outline-success {
+    border-color: #28a745; /* Green border color */
+    color: #28a745; /* Green text color */
+    font-size: 14px; /* Adjust the font size */
+    padding: 4px 12px; /* Adjust padding */
+  }
+  
+  /* Adjust the navigation links and dropdown styles similarly as before */
+  
+  /* Style the chat button */
+  .navbarBgDark .text-white .btn.getBtnb {
+    background-color: #28a745; /* Green background color */
+    border-color: #28a745; /* Green border color */
+    font-size: 14px; /* Adjust the font size */
+    padding: 6px 12px; /* Adjust padding */
+  }
+  
+  .navbarBgDark .text-white .btn.getBtnb:hover {
+    background-color: #218838; /* Darker green background color on hover */
+    border-color: #218838; /* Darker green border color on hover */
+  }
+/* User_navbar.css */
+/* Add these styles to your existing User_navbar.css file or create a new one */
+
+/* Style the search bar wrapper */
+.search-bar-wrapper {
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Style the search bar input */
+  .navbarBgDark .form-control {
+    border-color: #28a745; /* Green border color */
+    color: #28a745; /* Green text color */
+    font-size: 14px; /* Adjust the font size */
+    padding: 4px 8px; /* Adjust padding */
+    border-radius: 4px; /* Adjust border radius */
+    margin-right: 4px; /* Adjust margin between input and button */
+  }
+  
+  /* Style the search button */
+  .navbarBgDark .btn-outline-success {
+    border-color: #28a745; /* Green border color */
+    color: #28a745; /* Green text color */
+    font-size: 14px; /* Adjust the font size */
+    padding: 4px 12px; /* Adjust padding */
+    border-radius: 4px; /* Adjust border radius */
+  }
+  
+  /* Adjust the navigation links and dropdown styles similarly as before */
+  
+  /* Style the chat button */
+  .navbarBgDark .text-white .btn.getBtnb {
+    background-color: #28a745; /* Green background color */
+    border-color: #28a745; /* Green border color */
+    font-size: 14px; /* Adjust the font size */
+    padding: 6px 12px; /* Adjust padding */
+    border-radius: 4px; /* Adjust border radius */
+  }
+  
+  .navbarBgDark .text-white .btn.getBtnb:hover {
+    background-color: #218838; /* Darker green background color on hover */
+    border-color: #218838; /* Darker green border color on hover */
+  }
+  
+  /* Media query for smaller screens */
+  @media (max-width: 576px) {
+    /* Adjust styles for smaller screens */
+    .search-bar-wrapper {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .navbarBgDark .form-control,
+    .navbarBgDark .btn-outline-success {
+      margin-right: 0;
+      margin-top: 4px;
+    }
+  }
+    
+  
+/* Styling for the modal overlay */
+.modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Styling for the modal content */
+.modal-content {
+  border: none;
+  border-radius: 10px;
+}
+
+/* Styling for the modal header */
+.modal-header {
+  background-color: #007bff;
+  color: white;
+  border-radius: 10px 10px 0 0;
+}
+
+/* Styling for the modal title */
+.modal-title {
+  margin: 0;
+  padding: 15px;
+}
+
+/* Styling for the modal body */
+.modal-body {
+  padding: 20px;
+  text-align: center;
+}
+
+/* Styling for the balance display */
+.modal-body h2 {
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+/* Styling for the news details */
+.modal-body h4 {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+/* Styling for the buy button */
+.modal-body .btn-secondary {
+  background-color: #28a745;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  color: white;
+}
+
+/* Styling for the close button */
+.modal-footer .btn-secondary {
+  background-color: #dc3545;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  color: white;
+}
