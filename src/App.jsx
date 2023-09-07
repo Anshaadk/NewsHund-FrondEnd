@@ -40,6 +40,8 @@ import Admin_Subcategory from './components/admin_side/Admin_subcategory';
 import Admin_UserListing from './components/admin_side/Admin_userlisting';
 import NotAuthorizedPage from './components/Not_autherized';
 
+import User_suggestions from './components/user_side/User_suggestions';
+
 
 
 
@@ -71,32 +73,25 @@ function App() {
         
         <Route path="/staff_Payment" element={<Staff_payment/>}/>
 
-        
-        <Route path="/staff_dashboard" element={<Staff_Dashboard/>}/>
+        <Route path='/suggestions' element={<User_suggestions/>}/>
+
        
        
         <Route path="/modaltest" element={<Modaltest/>}/>
         <Route path="/user_profile" element={<User_profile/>}/>
-        <Route path="/staff_upload" element={<Staff_uploads/>}/>
-        <Route path="/staff_adding" element={<Staff_newsadding/>}/>
-        <Route path="/staff_newsedit/:id" element={<Staff_editNews/>}/>
+
 
         <Route path="/payment_success/:paymentId/:amount/:formattedDate" element={<Payment_success />} />
-        <Route path='/staff_upload_trend' element={<Staff_upload_trend/>}/>
-        <Route path='/staff_trendnewsadding' element={<Staff_trendnewsadding/>}/>
 
-        <Route path="/staff_trend_edit/:id" element={<Staff_trendnewsedit />} />
 
-        <Route path='/staff_profile' element={<Staff_Profile/>}/>
-        <Route path='/staff_profileupdate/:profileId' element={<Staff_profileupdate/>}/>
-        <Route path='/staff_passwordchange/:UserId'element={<Staff_passchange/>}/>
+
         <Route path='/user_profileupdate/:profileId' element={<User_profileupdate/>}/>
         <Route path='/user_passwordchange/:UserId'element={<User_passchange/>}/>
-        <Route path='/staff_wallet'element={<Staff_wallet/>}/>
+        
         <Route path='/user_wallet'element={<User_wallet/>}/>
 
         <Route path="/chat" element={<User_chat />} />
-        <Route path="/staff_chat" element={<Mychart />} />
+        
 
 
         <Route path="/notification" element={<Notification />} />
@@ -104,14 +99,27 @@ function App() {
 
         <Route path="/chat_test" element={<ChatDisgn/>} />
         <Route path='/following' element={<Following_List/>}/>
-        <Route path='/staff_followed' element={<Staff_Followers/>}/>
-
-
+        
+    {/*  staff_side */}
+    <Route path='/staff_followed' element={<Staff_Followers/>}/>
+    <Route path="/staff_chat" element={<Mychart />} />
+    <Route path='/staff_wallet'element={<Staff_wallet/>}/>
+    <Route path='/staff_profile' element={<Staff_Profile/>}/>
+    <Route path='/staff_profileupdate/:profileId' element={<Staff_profileupdate/>}/>
+    <Route path='/staff_passwordchange/:UserId'element={<Staff_passchange/>}/>
+    <Route path='/staff_upload_trend' element={<Staff_upload_trend/>}/>
+    <Route path='/staff_trendnewsadding' element={<Staff_trendnewsadding/>}/>
+    <Route path="/staff_trend_edit/:id" element={<Staff_trendnewsedit />} />
+    <Route path="/staff_upload" element={<Staff_uploads/>}/>
+    <Route path="/staff_adding" element={<Staff_newsadding/>}/>
+    <Route path="/staff_newsedit/:id" element={<Staff_editNews/>}/>
+    <Route path="/staff_dashboard" element={<Staff_Dashboard/>}/>
+    {/* end_staff */}
         <Route path='/admin_login' element={<Admin_login/>}/>
         {user?.is_admin && (
           
             <>
-              <Route path='/admin_dashboard' element={<Admin_Dashboard />} />
+              <Route path='/admin_dashboard' element={<Admin_Dashboard show={user.is_admin}/>} />
               <Route path='/admin_category' element={<Admin_Category />} />   
               <Route path='/admin_subcategory' element={<Admin_Subcategory />} />
               <Route path='/admin_userlisting' element={<Admin_UserListing />} />

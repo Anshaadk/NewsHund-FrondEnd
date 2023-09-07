@@ -9,6 +9,7 @@ export default function Admin_UserListing() {
   const [users, setUsers] = useState([]);
   const [modalShow, setModalShow] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
+  const token =localStorage.getItem('token')
 
   useEffect(() => {
     // Fetch user data from the API
@@ -20,6 +21,53 @@ export default function Admin_UserListing() {
         console.error('Error fetching user data:', error);
       });
   }, []);
+
+  const handleBlockUser = (userId) => {
+    // Make an API request to block the user
+    axiosInstance
+      .post(`/user_side/api/block-user/`, { user_to_block_id: userId })
+      .then(response => {
+        // Update the user's block status in the local state
+        setUsers(prevUsers => {
+          return prevUsers.map(user => {
+            if (user.id === userId) {
+              user.is_blocked = true;
+            }
+            return user;
+          });
+        });
+      })
+      .catch(error => {
+        console.error('Error blocking user:', error);
+      });
+  };
+
+  
+  const handleUnblockUser = (userId) => {
+    // Define the headers with the authentication token
+    const headers = {
+      Authorization: `Bearer ${token}`, // Assuming your token is formatted as a Bearer token
+    };
+  
+    // Make an API request to unblock the user
+    axiosInstance
+      .post(`/user_side/api/unblock-user/`, { user_to_block_id: userId }, { headers })
+      .then(response => {
+        // Update the user's block status in the local state
+        setUsers(prevUsers => {
+          return prevUsers.map(user => {
+            if (user.id === userId) {
+              user.is_blocked = false;
+            }
+            return user;
+          });
+        });
+      })
+      .catch(error => {
+        console.error('Error unblocking user:', error);
+      });
+  };
+  
 
 
 
@@ -36,6 +84,7 @@ export default function Admin_UserListing() {
                 <th scope='col'>Date of Joined</th>
                 <th scope='col'>Status</th>
                 <th scope='col'>Actions</th>
+                {/* <th scope='col'>Block</th> */}
               </tr>
             </MDBTableHead>
             <MDBTableBody>
@@ -87,6 +136,23 @@ export default function Admin_UserListing() {
                       View
                     </div>
                   </td>
+                  {/* <td>
+                    {user.is_blocked ? (
+                      <button
+                        onClick={() => handleUnblockUser(user.id)}
+                        className='btn btn-success'
+                      >
+                        Unblock
+                      </button>
+                    ) : (
+                      <button
+                        onClick={() => handleBlockUser(user.id)}
+                        className='btn btn-danger'
+                      >
+                        Block
+                      </button>
+                    )}
+                  </td> */}
                 </tr>
               ))}
             </MDBTableBody>

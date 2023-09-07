@@ -23,10 +23,15 @@ function User_Navbar() {
   const [newsdata, setNewsdata] = useState()
   const [categories, setCategories] = useState([]);
   const [heddername, setHeddername] = useState('Flash news');
+  const [cat,setCat]=useState(false)
 
   const dispatch = useDispatch()
     
- 
+  const [selectedTab, setSelectedTab] = useState('home'); // Initialize with 'home'
+
+  const handleTabClick = (tabName) => {
+    setSelectedTab(tabName);
+  };
   useEffect(() => {
     // Fetch user data from the backend API using axios
     axiosInstance
@@ -38,7 +43,6 @@ function User_Navbar() {
         console.error('Error fetching user data:', error);
       });
   }, [userId]);
-
 
  
 
@@ -115,6 +119,7 @@ function User_Navbar() {
         <nav 
       
     >
+      
         <div style={{backgroundColor:'#e7eadc52'}} className="container-fluid p-0 ">
             
             <div className="container-fluid container-lg p-0">
@@ -218,7 +223,9 @@ function User_Navbar() {
                                 
                 
                 <div style={{borderRadius:'7px' }} className="navbarBgDark" data-bs-theme="dark">
-                    
+                  
+                
+
                     <nav className="navbar navbar-expand-lg justify-content-center justify-content-lg-between p-0">
 
                         <button style={{color:'white' , borderColor:'white'}} className="navbar-toggler m-3 w-100" type="button" data-bs-toggle="collapse"
@@ -227,11 +234,17 @@ function User_Navbar() {
                             <span  className="navbar-toggler-icon"></span>
                             Menu
                         </button>
+                        
+
+
+
                         <div className="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
+                          
+                        {cat ?
                             <ul className="navbar-nav navbar-navb text-uppercase ps-3">
-                                
+                            
                                 <li className="nav-item ">
-                                    <Link className="nav-link nav-linkb active pe-3 " onClick={(()=>{removeFnews(),setHeddername('Flash News')})} aria-current="page" to='/'>Home</Link>
+                                    <Link className="nav-link nav-linkb active pe-3 " onClick={(()=>{removeFnews(),setHeddername('Flash News'),setCat(false)})} aria-current="page" to='/'>Go Back</Link>
                                 </li>
                                 {categories?.slice(0, maxCategoriesToShow).map((e) => (
                 <li className="nav-item" key={e.id}>
@@ -274,14 +287,47 @@ function User_Navbar() {
               )}
                                 
                             </ul>
+:
+<ul className="navbar-nav custom-nav-links text-uppercase ps-3">
+<li className="nav-item">
+  <NavLink
+    to="/"
+    className="nav-link"
+    activeClassName="active"
+    onClick={()=>{
+      {cat? setCat(false):setCat(true)}
+       
+    }}
+  >
+    Home
+  </NavLink>
+</li>
+
+<li className="nav-item">
+  <NavLink
+    to="/suggestions"
+    className="nav-link"
+    activeClassName="active"
+  >
+    Suggestions
+  </NavLink>
+</li>
+</ul>
+}
                             <div className="text-white m-1 p-3">
                                 
-                            
+                            <br />
+                            {user.is_staffs &&
+                            <Link type="button" to='/staff_dashboard' className="btn primary getBtnb">Go To Auther</Link>
+}
+                            &nbsp;
+                              
 
-      <Notification  showModal={showModal} setShowModal={setShowModal} />
+      <Notification   showModal={showModal} setShowModal={setShowModal} />
+      &nbsp;
    
                                 {userId?
-                                <Link type="button" to='/chat/' className="btn getBtn getBtnb border border-white rounded-0">Chat</Link>
+                                <Link type="button" to='/chat/' className="btn primary getBtnb">Chat</Link>
 :''}    
                             </div>
                         </div>
@@ -312,6 +358,7 @@ function User_Navbar() {
         </div>
 
     </nav>
+    
     
     </>
   );

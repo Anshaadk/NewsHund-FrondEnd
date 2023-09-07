@@ -64,6 +64,7 @@ function Admin_login() {
             toast.success("Login Success")
             if (response.data.user.is_admin && response.data.user.is_staff) {
               navigate('/admin_dashboard');
+              window.location.reload();
               console.log('if');
             } else{
                 navigate('/')
@@ -115,7 +116,7 @@ function Admin_login() {
           </div>
 
           <div className='text-center text-md-start mt-4 pt-2'>
-            <MDBBtn className="mb-0 px-5" onClick={handleSubmit} size='lg'>Login</MDBBtn>
+            <button className="mb-0 px-5 ripple ripple-surface ripple-surface-light btn btn-primary mb-0 px-5" onClick={handleSubmit} >Login</button>
             
           </div>
 

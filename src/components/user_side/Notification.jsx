@@ -89,7 +89,7 @@ function Notification() {
 
     return (
         <>
-            <Button variant="btn getBtn getBtnb border border-white rounded-0" onClick={handleShow}>
+            <Button variant="btn primary getBtnb" onClick={handleShow}>
                 Notification
             </Button>
 

@@ -9,7 +9,7 @@ function Staff_BodyDashboard() {
   const [earningsData, setEarningsData] = useState([]);
   const [paymentData, setPaymentData] = useState([]);
   const [followers, setFollowers] = useState([]);
-  
+  const [newsList, setNewsList] = useState([]);
   const userJSON = localStorage.getItem('user');
   const userId = userJSON ? JSON.parse(userJSON).userID : null;
 
@@ -46,8 +46,55 @@ function Staff_BodyDashboard() {
       });
   }, [userId]);
 
+  useEffect(() => {
+    
+    axiosInstance
+      .get(`/user_side/api/news/user/?id=${userId}`)
+      .then((response) => {
+        setNewsList(response.data);
+        
+      })
+      .catch((error) => {
+        console.error('Error fetching news:', error);
+      });
+  }, [userId]);
+
+  const totalViewCount = newsList.reduce((total, newsItem) => total + newsItem.view_count, 0);
   return (
     <div className="dashboard-container">
+          <div className="chart-container">
+      <h3>News Treading count</h3>
+      <ResponsiveContainer width="100%" height={300}>
+        <BarChart data={newsList}>
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="news_name" />
+          <YAxis />
+          <Tooltip
+            contentStyle={{ backgroundColor: '#333', border: 'none' }}
+            formatter={(value, name, props) => [`${value} views`, 'Views']}
+            labelFormatter={(label) => `News: ${label}`}
+            itemSorter={(item) => -item.value}
+            content={(props) => {
+              const { payload } = props;
+              if (payload && payload.length > 0) {
+                const data = payload[0].payload;
+                return (
+                  <div className="custom-tooltip">
+                    <p>News: {data.subject}</p>
+                    <p>Views: {data.view_count}</p>
+                  </div>
+                );
+              }
+              return null;
+            }}
+          />
+          <Legend />
+          <Bar dataKey="view_count" fill="#ffc658" />
+          
+        </BarChart>
+      </ResponsiveContainer>
+    </div>
+
       <div className="chart-container">
         <h3>Earnings Data</h3>
         <ResponsiveContainer width="100%" height={300}>

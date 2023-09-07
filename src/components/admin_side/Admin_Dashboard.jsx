@@ -5,17 +5,26 @@ import axios from 'axios';
 import Admin_Navbar from './Admin_Navbar';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
+import axiosInstance from '../../api/axios';
+import { useNavigate } from 'react-router-dom';
 
-function Admin_Dashboard() {
+function Admin_Dashboard({show}) {
+  console.log('is_admin',show);
   const [data, setData] = useState([]);
   const [selectedpaymet, setSelectedpayment] = useState([]);
   const [modalShow, setModalShow] = useState(false);
   const [selectedUserDetails, setSelectedUserDetails] = useState(null);
-
+  const [Paymetdetals,setPaymentdetail]= useState([])
+  const navigate=useNavigate()
 
   useEffect(() => {
+    
+      if (show) {
+        
+      
+    
     // Fetch data from API
-    axios.get('http://localhost:8000/user_side/api/admin_dashboard1/')
+    axiosInstance.get('/user_side/api/admin_dashboard1/')
       .then(response => {
         setData(response.data);
         console.log(response.data);
@@ -23,8 +32,12 @@ function Admin_Dashboard() {
       .catch(error => {
         console.error('Error fetching data:', error);
       });
+      }else{
+        navigate('/')
+      }
   }, []);
 
+  console.log(Paymetdetals);
   // Extract labels and values for the charts
   const chartData = data.map(item => ({ label: item.plan, value: item.amount }));
   
@@ -88,7 +101,7 @@ function Admin_Dashboard() {
             <th>ID</th>
             <th>username</th>
             <th>plan</th>
-            <th>view</th>
+            
           </tr>
         </thead>
         <tbody>
@@ -101,20 +114,7 @@ function Admin_Dashboard() {
 
 }
               <td>{item.plan}</td>
-              <td>
-              <div
-                      color='link'
-                      className='card-pop-button'
-                      onClick={() => {
-                        
-                        setModalShow(true);
-                      }}
-                      rounded
-                      size='sm'
-                    >
-                      View
-                    </div>
-</td>
+             
 
             </tr>
           ))}
@@ -124,32 +124,29 @@ function Admin_Dashboard() {
   </Col>
 </Row>
 <Modal show={modalShow} onHide={() => setModalShow(false)}>
-        <Modal.Header closeButton>
-          <Modal.Title>User Details</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-        {/* {selectedUserDetails && (
-  <div className='user-details'>
-    <img
-      src=''
-      alt='User Profile'
-      className='rounded-circle profile-image'
-    />
-    <p><strong>Username:</strong> {selectedUserDetails.username}</p>
-    <p><strong>Email:</strong> {selectedUserDetails.email}</p>
-    <p><strong>Phone:</strong> {selectedUserDetails.phone}</p>
-    <p><strong>Date Joined:</strong> {selectedUserDetails.date_joined}</p>
- 
-  </div>
-)} */}
+  <Modal.Header closeButton>
+    <Modal.Title>User Details</Modal.Title>
+  </Modal.Header>
+  <Modal.Body>
+    {Paymetdetals ? (
+      
+      <>
+      
+        <p>Payment ID: {Paymetdetals.id}</p>
+        <p>Amount: {Paymetdetals.amount}</p>
+        {/* Add more payment details here */}
+      </>
+    ) : (
+      <p>No payment details available.</p>
+    )}
+  </Modal.Body>
+  <Modal.Footer>
+    <Button variant="secondary" onClick={() => setModalShow(false)}>
+      Close
+    </Button>
+  </Modal.Footer>
+</Modal>
 
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={() => setModalShow(false)}>
-            Close
-          </Button>
-        </Modal.Footer>
-      </Modal>
     </>
   );
 }

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './Staff_newsadding.css';
 import Staff_Navbar from './Staff_Navbar/Staff_Navbar';
 import { Navigate, useNavigate } from 'react-router-dom';
+import axiosInstance from '../../api/axios';
 
 function Staff_newsadding() {
   const token = localStorage.getItem('token');
@@ -22,6 +23,8 @@ function Staff_newsadding() {
   const [photo2, setPhoto2] = useState(null);
   const [shortDetails, setShortDetails] = useState('');
   const [fullDescription, setFullDescription] = useState('');
+  const baseURL=import.meta.env.VITE_SOME_KEY
+ 
 
   useEffect(() => {
     // Fetch categories from the backend
@@ -66,7 +69,7 @@ function Staff_newsadding() {
     // Make the API call to submit the form data
     console.log(formData);
   
-    fetch('http://localhost:8000/user_side/api/news/', {
+    fetch(`${baseURL}/user_side/api/news/`, {
       method: 'POST',
       body: formData,
     })

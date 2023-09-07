@@ -13,7 +13,7 @@ function Staff_wallet({ match }) {
   const [balance, setBalance] = useState(0);
   const [transactions, setTransactions] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [pageSize, setPageSize] = useState(10);
+  const [pageSize, setPageSize] = useState(3);
   const [totalPages, setTotalPages] = useState(1);
   const [topUpAmount, setTopUpAmount] = useState(0)
   const [tra, setTra] = useState({});
@@ -25,48 +25,32 @@ function Staff_wallet({ match }) {
   useEffect(() => {
     const fetchWalletData = async () => {
       try {
-        // Replace BASE_API_URL with the actual base URL of your Django backend
-        const response = await axiosInstance.get(`user_side/api/wallets/${userId}/`);
-        setBalance(response.data.balance);
-        
-        // Replace BASE_API_URL with the actual base URL of your Django backend
+        // Fetch user-based wallet information
+        const walletResponse = await axiosInstance.get(`user_side/api/wallets/${userId}/`);
+        setBalance(walletResponse.data.balance);
+
+        // Fetch user transactions
         const transactionResponse = await axiosInstance.get(`user_side/api/transactions/${userId}/`);
-        console.log(transactionResponse.data);
-        
-        let t =transactionResponse.data
-        console.log(t);
-        let k=t.map((e)=>{
-          console.log(e.sender,"anshad");
-          var b =e.sender.id
-          e.sender='unknown user'
-          setTra(e)
-          //asdadad
+        const allTransactions = transactionResponse.data;
 
-          
-        //sasdas
-          axiosInstance.get(`user_side/api/viewprofile/${b}/`)
-          .then((response) => {
-            setUserData(response.data);
-            console.log(userData);
-          })
-          
-        })
-        console.log(k,"asjknsasasjkkkjkajksdbjhdasj");
+        // Calculate total pages based on the page size
+        const calculatedTotalPages = Math.ceil(allTransactions.length / pageSize);
+        setTotalPages(calculatedTotalPages);
 
-        setTransactions(transactionResponse.data);
-        
-        
-        
+        // Calculate the range of transactions to display on the current page
+        const startIndex = (currentPage - 1) * pageSize;
+        const endIndex = currentPage * pageSize;
+        const transactionsToDisplay = allTransactions.slice(startIndex, endIndex);
+
+        // Update the transactions state with the transactions to display
+        setTransactions(transactionsToDisplay);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
-      
     };
-
-    // Call the function to fetch data
+        // Call the function to fetch data
     fetchWalletData();
-  }, [userId]);
-  
+  }, [userId, currentPage, pageSize]);
 
   const getCookie = (name) => {
     const value = `; ${document.cookie}`;

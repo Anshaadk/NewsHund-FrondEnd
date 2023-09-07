@@ -5,6 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Modal from '../../Modal';
 import './User_registration.css'; 
 import axiosInstance from '../../../api/axios';
+import { GoogleLogin,useGoogleLogin } from '@react-oauth/google';
 
 
 
@@ -18,6 +19,36 @@ function User_registration() {
     const [sendedotp, setSendedotp] = useState('');
     const [isModalOpen, setIsModalOpen] = useState(false);
     const navigate = useNavigate();
+
+
+    const gLogin = async (accessToken) => {
+      try {
+        const res = await axios.get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${accessToken}`, {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+            Accept: 'application/json',
+          },
+        });
+  
+        console.log(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    const onSuccessCallback = (codeResponse) => {
+  
+      setUser(codeResponse);
+      gLogin(codeResponse.access_token);
+    };
+  
+    const onErrorCallback = (error) => {
+      console.log('Login Failed:', error);
+    };
+  
+    const login = useGoogleLogin({
+      onSuccess: onSuccessCallback,
+      onError: onErrorCallback,
+    });
 
   const handleUsernameChange = (e) => {
     setUsername(e.target.value);
@@ -156,17 +187,19 @@ function User_registration() {
                     <div  className="">
                         <p className="text-center text-muted fs-08 mt-3"> User Register  </p>
                         <div  className='d-flex justify-content-center'>
-                <div  className="btn btn-default">
-                    
-                        <img style={{width:'20px',height:'20px'}} src="https://www.freepnglogos.com/uploads/512x512-logo-png/512x512-logo-github-icon-35.png"
-                            alt=""/>
-                        <span>GitHUb</span>
-                    </div>
-                    <div className="btn btn-default mx-3">
-                        <img style={{width:'20px',height:'20px'}} src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png"
-                            alt=""/>
-                        <span>Google</span>
-                            </div>
+                        <div className="btn btn-default mx-3"
+ 
+ onClick={login}
+> 
+  
+    <img
+      type='btn' style={{width:'20px',height:'20px'}}
+      src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png"
+      alt=""
+    />
+    <span>Google</span>
+  
+</div>
                             </div>
                             <br />
                             

@@ -1,6 +1,35 @@
 
 
- 
+ .like-dislike {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100px; /* Adjust the width as needed */
+}
+
+.buttons {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.button:focus {
+  outline: none;
+}
+
+i {
+  font-size: 24px; /* Adjust the size as needed */
+  color: #666; /* Adjust the color as needed */
+  margin-right: 4px;
+}
+
+.count {
+  font-size: 14px;
+  color: #333; /* Adjust the color as needed */
+}
+
   
 /* Styles for free cards */
 .free-card {
@@ -25,3 +54,48 @@
     margin-top: 20px;
     color: #333;
   }
+
+
+  .average-rating {
+    font-size: 12px; /* Adjust the font size as needed */
+    color: #FF5733; /* Change to your desired color */
+    margin-left: 5px; /* Add some spacing between stars and the rating value */
+  }
+  
+  .average-rating-value {
+    font-weight: bold; /* Optionally, make the rating value bold */
+  }
+  .view-count {
+    font-size: 12px; /* Adjust the font size as needed */
+    color: #007bff; /* Change the color to your desired color */
+    margin-left: 5px; /* Add some spacing between the rating and view count */
+  }
+  
+  /* Style the eye icon */
+  .view-count i {
+    font-size: 14px; /* Adjust the icon size as needed */
+    margin-right: 2px; /* Add spacing between the icon and view count */
+  }
+/* Define the custom class for navigation links */
+.custom-nav-links {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  padding: 0;
+}
+
+.custom-nav-links .nav-item {
+  margin-right: 20px; /* Adjust the spacing between links */
+}
+
+.custom-nav-links .nav-link {
+  text-decoration: none;
+  color: #f3ecec; /* Adjust the link color */
+  transition: color 0.3s;
+}
+
+.custom-nav-links .nav-link.active,
+.custom-nav-links .nav-link:hover {
+  color: #007bff; /* Adjust the active and hover link color */
+}
+    

@@ -16,6 +16,11 @@ function Staff_Navbar() {
   const [searchQuery, setSearchQuery] = useState(''); 
 
   useEffect(() => {
+    if (!user.is_staffs) {      
+    setTimeout(() => {
+        navigate('/');
+      }, 1);
+    }
     // Fetch user data from the backend API using axios
     axiosInstance
       .get(`/user_side/api/viewprofile/${userId}/`)
@@ -41,6 +46,7 @@ const handleLogout = () => {
     // Set a timer to navigate after a certain delay (e.g., 2 seconds)
     setTimeout(() => {
       navigate('/staff_login');
+      window.location.reload();
     }, 1); // 2000 milliseconds (2 seconds)
   };
   
@@ -146,6 +152,8 @@ const handleLogout = () => {
                                 
                             </ul>
                             <div className="text-white m-1 p-3">
+                            <Link style={{color:'black' , borderColor:'black'}} to='/' type="button" className="btn getBtn getBtnb border border-white rounded-0 card_pop">Go To Home</Link>
+
                                 <Link style={{color:'black' , borderColor:'black'}} to='/staff_chat' type="button" className="btn getBtn getBtnb border border-white rounded-0 card_pop">Chat</Link>
                             </div>
                         </div>

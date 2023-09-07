@@ -4,7 +4,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
-import { GoogleLogin } from '@react-oauth/google';
+import { GoogleLogin,useGoogleLogin } from '@react-oauth/google';
 import 'react-toastify/dist/ReactToastify.css';
 import axiosInstance from '../../../api/axios';
 
@@ -15,15 +15,38 @@ function Staff_login() {
     // -----------------------------------Google--------------------
   
   
-          const responseMessage = (response) => {
-              console.log(response);
-          };
-          const errorMessage = (error) => {
-              console.log(error);
-          };
+         
   
   // ---------------------------end-----------------------------------------
-  
+
+  const gLogin = async (accessToken) => {
+    try {
+      const res = await axios.get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${accessToken}`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          Accept: 'application/json',
+        },
+      });
+
+      console.log(res.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const onSuccessCallback = (codeResponse) => {
+
+    setUser(codeResponse);
+    gLogin(codeResponse.access_token);
+  };
+
+  const onErrorCallback = (error) => {
+    console.log('Login Failed:', error);
+  };
+
+  const login = useGoogleLogin({
+    onSuccess: onSuccessCallback,
+    onError: onErrorCallback,
+  });
   const handleEmailChange = (e) => {
       setEmail(e.target.value);
     };
@@ -94,16 +117,19 @@ function Staff_login() {
                 <div style={{overflow:'hidden'}}  className="card-head bg-white">
                     <p className="m-0 text-center fs-08">Login in with </p>
                     <div className="d-flex align-items-center justify-content-center my-2">
-                        <div  className="btn btn-default">
-                            <img style={{width:'20px',height:'20px'}} src="https://www.freepnglogos.com/uploads/512x512-logo-png/512x512-logo-github-icon-35.png"
-                                alt=""/>
-                            <span>GitHUb</span>
-                        </div>
-                        <div className="btn btn-default mx-3">
-                            <img type='btn' style={{width:'20px',height:'20px'}}   onSuccess={responseMessage} onError={errorMessage} src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png"
-                                alt=""/>
-                            <span>Google</span>
-                        </div>
+                    <div className="btn btn-default mx-3"
+ 
+ onClick={login}
+> 
+  
+    <img
+      type='btn' style={{width:'20px',height:'20px'}}
+      src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png"
+      alt=""
+    />
+    <span>Google</span>
+  
+</div>
                     </div>
                 </div>
                 <div className="card-form card-forms">

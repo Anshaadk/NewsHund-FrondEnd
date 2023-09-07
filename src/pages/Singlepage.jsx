@@ -2,33 +2,30 @@ import React, { useEffect, useRef, useState } from 'react';
 import User_Footer from '../components/user_side/Footer/User_Footer';
 import { useParams } from 'react-router-dom';
 import axiosInstance from '../api/axios';
-import { Modal } from 'react-bootstrap'; // Import the Modal component from react-bootstrap
+import { Modal } from 'react-bootstrap';
 import User_Navbar from '../components/user_side/navbar/User_NavBar';
-
+import { FaStar } from 'react-icons/fa'; // Import the star icon
 
 function Singlepage() {
-  const { id } = useParams(); // Extract the id parameter from the URL
+  const { id } = useParams();
   const [singlenews, setSinglenews] = useState(null);
   const [usedetails, setUserdetails] = useState(null);
-  
+  const [userRating, setUserRating] = useState(null);
+  const [alreadyRated, setAlreadyRated] = useState(false);
   const apiCalledRef = useRef(false);
   const userJSON = localStorage.getItem('user');
   const user = userJSON ? JSON.parse(userJSON) : null;
   const userId = user ? user.userID : null;
   const [isFollowing, setIsFollowing] = useState(false);
-  const [comments, setComments] = useState([]); // State to store comments
+  const [comments, setComments] = useState([]);
   const [commentModalOpen, setCommentModalOpen] = useState(false);
   const [newComment, setNewComment] = useState('');
 
+  const baseURL=import.meta.env.VITE_SOME_KEY
 
-
-
-
-  
   useEffect(() => {
-    // Fetch the specific news item data using Axios and the id parameter
-    // Replace the following API URL with the correct endpoint to fetch the news item by its id
-    axiosInstance.get(`/user_side/api/user_newslisting/${id}/`)
+    axiosInstance
+      .get(`/user_side/api/user_newslisting/${id}/`)
       .then((response) => {
         setSinglenews(response.data);
         console.log(response.data);
@@ -36,125 +33,170 @@ function Singlepage() {
       .catch((error) => {
         console.error('Error fetching news item data:', error);
       });
-
-      
-
   }, [id]);
 
-
-
   useEffect(() => {
-    // Make the user details API call only if the API hasn't been called before and singlenews is available
     if (!apiCalledRef.current && singlenews) {
-      axiosInstance.get(`/user_side/api/viewprofile/${singlenews.user}/`)
+      axiosInstance
+        .get(`/user_side/api/viewprofile/${singlenews.user}/`)
         .then((response) => {
           setUserdetails(response.data);
           if (singlenews?.Date) {
-            const normalizedDate = new Date(singlenews.Date).toLocaleDateString(); // Adjust the date format as needed
+            const normalizedDate = new Date(singlenews.Date).toLocaleDateString();
             setSinglenews((prev) => ({ ...prev, Date: normalizedDate }));
           }
-          
           console.log(response.data);
-          // Mark the API call as made to prevent multiple calls
           apiCalledRef.current = true;
         })
         .catch((error) => {
           console.error('Error fetching user details:', error);
         });
     }
-    
-    // if (usedetails) {
-    //   setIsFollowing(usedetails.is_following); // Assuming the API response has a property is_following
-    // }
-}, [singlenews]);
+  }, [singlenews]);
 
-useEffect(() => {
-  if (userId && singlenews) {
-    axiosInstance.get(`/user_side/follow/${userId}/${singlenews.user}/`)
+  useEffect(() => {
+    if (userId && singlenews) {
+      axiosInstance
+        .get(`/user_side/follow/${userId}/${singlenews.user}/`)
+        .then((response) => {
+          if (response.status === 200) {
+            setIsFollowing(response.data.is_followed);
+          }
+        })
+        .catch((error) => {
+          console.error('Error fetching follow status:', error);
+        });
+    }
+  }, [userId, singlenews]);
+
+  const handleFollowClick = () => {
+    axiosInstance
+      .post(`/user_side/follow/${userId}/${singlenews.user}/`)
       .then((response) => {
-        if (response.status === 200) {
-          setIsFollowing(response.data.is_followed);
+        if (response.status === 201) {
+          setIsFollowing(true);
         }
       })
       .catch((error) => {
-        console.error('Error fetching follow status:', error);
+        console.error('Error following:', error);
       });
-  }
-}, [userId, singlenews]);
+  };
 
-const handleFollowClick = () => {
-  axiosInstance
-    .post(`/user_side/follow/${userId}/${singlenews.user}/`)
-    .then((response) => {
-      if (response.status === 201) {
-        setIsFollowing(true);
-      }
-    })
-    .catch((error) => {
-      console.error('Error following:', error);
-    });
-};
+  const handleUnfollowClick = () => {
+    axiosInstance
+      .delete(`/user_side/follow/${userId}/${singlenews.user}/`)
+      .then((response) => {
+        if (response.status === 204) {
+          setIsFollowing(false);
+        }
+      })
+      .catch((error) => {
+        console.error('Error unfollowing:', error);
+      });
+  };
 
-const handleUnfollowClick = () => {
-  axiosInstance
-    .delete(`/user_side/follow/${userId}/${singlenews.user}/`)
-    .then((response) => {
-      if (response.status === 204) {
-        setIsFollowing(false);
-      }
-    })
-    .catch((error) => {
-      console.error('Error unfollowing:', error);
-    });
-};
+  const openCommentModal = () => {
+    setCommentModalOpen(true);
+  };
 
-const openCommentModal = () => {
-  setCommentModalOpen(true);
-};
-
-const closeCommentModal = () => {
-  setCommentModalOpen(false);
-  setNewComment(''); // Clear the comment input when modal is closed
-};
-
-const handleCommentSubmit = (e) => {
-  e.preventDefault();
-
-  // Make an API call to submit the new comment
-  axiosInstance.post(`/user_side/api/commanting/`, {
-    user:userId,
-    text: newComment,
-    news:id
-  })
-  .then((response) => {
-    // Update the comments state with the new comment
-    setComments([...comments, response.data]);
+  const closeCommentModal = () => {
+    setCommentModalOpen(false);
     setNewComment('');
-    closeCommentModal(); // Close the modal after successful submission
-  })
-  .catch((error) => {
-    console.error('Error submitting comment:', error);
-  });
-};
+  };
 
-useEffect(() => {
+  const handleCommentSubmit = (e) => {
+    e.preventDefault();
 
-  axiosInstance.
-  get(`/user_side/api/comments/${id}/`)
-    .then((response) => {
-      setComments(response.data);
-      console.log(response.data);
-    })
-    .catch((error) => {
-      console.error('Error fetching comments:', error);
-    });
+    axiosInstance
+      .post(`/user_side/api/commanting/`, {
+        user: userId,
+        text: newComment,
+        news: id,
+      })
+      .then((response) => {
+        setComments([...comments, response.data]);
+        setNewComment('');
+        closeCommentModal();
+      })
+      .catch((error) => {
+        console.error('Error submitting comment:', error);
+      });
+  };
 
-  // ... Rest of your existing useEffect code
+  useEffect(() => {
+    axiosInstance
+      .get(`/user_side/api/comments/${id}/`)
+      .then((response) => {
+        setComments(response.data);
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error('Error fetching comments:', error);
+      });
+  }, [id]);
 
-}, [id]);
+  useEffect(() => {
+    if (userId) {
+      axiosInstance
+        .get(`/user_side/api/ratings/${userId}/`)
+        .then((response) => {
+          // Check if the user has already rated the news with the current ID
+          const userRatingForNews = response.data.find((rating) => rating.news == id);
+  
+          if (userRatingForNews) {
+            setUserRating(userRatingForNews.rating);
+            setAlreadyRated(true);
+          }
+        })
+        .catch((error) => {
+          console.error('Error checking rating:', error);
+        });
+    }
+  }, [userId, id]);
+  
 
-// ... Rest of your component code
+  const sendRating = (rating) => {
+    axiosInstance
+      .post(`/user_side/api/ratings/`, {
+        user: userId,
+        news: id,
+        rating: rating,
+      })
+      .then((response) => {
+        console.log('Rating submitted successfully');
+      })
+      .catch((error) => {
+        console.error('Error submitting rating:', error);
+      });
+  };
 
+  const handleStarClick = (rating) => {
+    if (!alreadyRated) {
+      setUserRating(rating);
+      sendRating(rating);
+    }
+  };
+
+  const renderRatingStars = () => {
+    const starIcons = [];
+    for (let i = 1; i <= 5; i++) {
+      starIcons.push(
+        <FaStar
+          key={i}
+          className={`star-icon ${userRating >= i ? 'selected' : ''}`}
+          onClick={() => handleStarClick(i)}
+        />
+      );
+    }
+    return (
+      <div className="rating-stars">
+        {starIcons}
+        <p className="rating-label">
+          {alreadyRated ? 'You have already rated this news' : 'Rate this news'}
+        </p>
+      </div>
+    );
+  };
 
   return (
     <div>
@@ -190,7 +232,7 @@ useEffect(() => {
 
             <div className="row align-items-center mb-4">
               <div className="col-lg-6 text-center text-lg-start mb-3 m-lg-0">
-                <img src={"http://localhost:8000/user_side/"+usedetails?.profile_image} className="rounded-5 shadow-1-strong me-2"
+                <img src={usedetails?.profile_image} className="rounded-5 shadow-1-strong me-2"
                   height="35" alt="" loading="lazy" />
                 <span> Published <u>{singlenews?.Date}</u> by</span> 
                  <a  className="text-dark"> {usedetails?.username}</a>
@@ -253,12 +295,13 @@ useEffect(() => {
           </section>
           
           <section className="text-center border-top border-bottom py-4 mb-4">
+          {renderRatingStars()}
         <button
           type="button"
-          className="btn btn-primary me-1"
+          className="btn btn-primary me-1 "
           onClick={openCommentModal}
         >
-          <i className="fas fa-comments me-2"></i>Add comment
+          <i className="fas fa-comments me-2 "></i>Add comment
         </button>
       </section>
           
@@ -296,7 +339,7 @@ useEffect(() => {
       <div className="col-2">
         {/* Use comment user's profile image */}
         <img
-          src={`http://localhost:8000/user_side/${comment.user_profile_image}`}
+          src={`${baseURL}/${comment.user_profile_image}`}
           className="img-fluid shadow-1-strong rounded-5"
           alt=""
         />
