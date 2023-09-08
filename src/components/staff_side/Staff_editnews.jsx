@@ -90,13 +90,7 @@ function Staff_editNews() {
 
     formData.append('category', selectedCategory);
     formData.append('subcategory', selectedSubcategory);
-    if (photo1 && !photo1.startsWith(baseURL + '/uploads/')) {
-      formData.append('photo1', photo1);
-    }
     
-    if (photo2 && !photo2.startsWith(baseURL + '/uploads/')) {
-      formData.append('photo2', photo2);
-    }
     
 
     // Send a PATCH request to the backend to update the news item
@@ -112,7 +106,7 @@ function Staff_editNews() {
   };
 
   const handleSubmit = (event) => {
-    console.log(photo1, 'photo1 value');
+    
 
     event.preventDefault();
     
