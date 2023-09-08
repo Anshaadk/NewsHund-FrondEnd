@@ -49,6 +49,7 @@ export default function Admin_Subcategory() {
   };
 
   const openAddModal = () => {
+    setEditingSubCategory(null); // Clear editing mode when adding a new subcategory
     setNewSubCategoryName('');
     setSelectedCategoryId('');
     setModalShow(true);
@@ -73,15 +74,27 @@ export default function Admin_Subcategory() {
 
   const handleSubmit = async () => {
     try {
-      if (!editedSubCategoryName || !selectedCategoryId) {
-        console.error('Subcategory name and category are required.');
+      if (!selectedCategoryId) {
+        console.error('Category is required.');
         return;
       }
 
       if (editingSubCategory) {
+        // Editing an existing subcategory
+        if (!editedSubCategoryName) {
+          console.error('Subcategory name is required.');
+          return;
+        }
+
         const editedData = { sub_category: editedSubCategoryName, category: selectedCategoryId };
         await axiosInstance.patch(`/user_side/api/subcategories_viewset/${editingSubCategory.id}/`, editedData);
       } else {
+        // Adding a new subcategory
+        if (!newSubCategoryName) {
+          console.error('Subcategory name is required.');
+          return;
+        }
+
         const newData = { sub_category: newSubCategoryName, category: selectedCategoryId };
         await axiosInstance.post('/user_side/api/subcategories_viewset/', newData);
       }
@@ -96,41 +109,40 @@ export default function Admin_Subcategory() {
 
   return (
     <>
-    <Admin_Navbar  />
-    <div className="admin-category-container">
-      
-      <br /><br />
-      <Button variant="primary" onClick={openAddModal}>
-        Add New Subcategory
-      </Button>
-      <MDBTable>
-        <MDBTableHead>
-          <tr>
-            <th scope='col'>ID</th>
-            <th scope='col'>Subcategory</th>
-            <th scope='col'>Category</th>
-            <th scope='col'>Edit</th>
-          </tr>
-        </MDBTableHead>
-        <MDBTableBody>
-          {subcategories.map(subcategory => (
-            <tr key={subcategory.id}>
-              <th scope='row'>{subcategory.id}</th>
-              <td>{subcategory.sub_category}</td>
-              <td>
-                {subcategory.category
-                  ? categories.find(category => category.id === subcategory.category)?.cat_name
-                  : 'N/A'}
-              </td>
-              <td>
-                <Button variant="primary" onClick={() => openEditModal(subcategory.id)}>
-                  Edit
-                </Button>
-              </td>
+      <Admin_Navbar />
+      <div className="admin-category-container">
+        <br /><br />
+        <Button variant="primary" onClick={openAddModal}>
+          Add New Subcategory
+        </Button>
+        <MDBTable>
+          <MDBTableHead>
+            <tr>
+              <th scope='col'>ID</th>
+              <th scope='col'>Subcategory</th>
+              <th scope='col'>Category</th>
+              <th scope='col'>Edit</th>
             </tr>
-          ))}
-        </MDBTableBody>
-      </MDBTable>
+          </MDBTableHead>
+          <MDBTableBody>
+            {subcategories.map(subcategory => (
+              <tr key={subcategory.id}>
+                <th scope='row'>{subcategory.id}</th>
+                <td>{subcategory.sub_category}</td>
+                <td>
+                  {subcategory.category
+                    ? categories.find(category => category.id === subcategory.category)?.cat_name
+                    : 'N/A'}
+                </td>
+                <td>
+                  <Button variant="primary" onClick={() => openEditModal(subcategory.id)}>
+                    Edit
+                  </Button>
+                </td>
+              </tr>
+            ))}
+          </MDBTableBody>
+        </MDBTable>
       </div>
       <Modal show={modalShow} onHide={closeEditModal}>
         <Modal.Header closeButton>
