@@ -130,9 +130,14 @@ function Staff_uploads() {
       </Link>
       <button
         className='card_pop btn btn-danger'
-        onClick={() => handleBlock(news.id)}
-      >
-        Block
+        onClick={() => {
+          const confirmDelete = window.confirm("Are you sure you want to delete this news item?");
+          if (confirmDelete) {
+            handleBlock(news.id);
+          }
+        }}
+        >
+        Delete
       </button>
     </td>
                 </tr>
