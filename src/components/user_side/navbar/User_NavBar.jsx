@@ -317,7 +317,7 @@ function User_Navbar() {
                             <div className="text-white m-1 p-3">
                                 
                             <br />
-                            {user.is_staffs &&
+                            {user?.is_staffs &&
                             <Link type="button" to='/staff_dashboard' className="btn primary getBtnb">Go To Auther</Link>
 }
                             &nbsp;
