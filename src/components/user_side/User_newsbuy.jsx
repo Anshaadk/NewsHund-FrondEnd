@@ -31,7 +31,7 @@ function User_newsbuy({  newsid }) {
         setNews(response.data)
         console.log(response.data);
       })
-  },[])
+  })
 
 
   const payment = () => {
