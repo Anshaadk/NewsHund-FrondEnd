@@ -90,14 +90,14 @@ function Staff_editNews() {
 
     formData.append('category', selectedCategory);
     formData.append('subcategory', selectedSubcategory);
-    if (!photo1.startsWith(baseURL+'/uploads/')) {
+    if (photo1 && !photo1.startsWith(baseURL + '/uploads/')) {
       formData.append('photo1', photo1);
     }
-  
-    // Check if photo2 is not a URL before appending
-    if (!photo2.startsWith(baseURL+'/uploads/')) {
+    
+    if (photo2 && !photo2.startsWith(baseURL + '/uploads/')) {
       formData.append('photo2', photo2);
     }
+    
 
     // Send a PATCH request to the backend to update the news item
     axiosInstance
