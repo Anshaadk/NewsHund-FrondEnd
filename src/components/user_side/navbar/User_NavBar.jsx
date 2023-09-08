@@ -111,7 +111,7 @@ function User_Navbar() {
     dispatch(addFilternews(filteredNews))
   }
 
-  const maxCategoriesToShow =10;
+  const maxCategoriesToShow =6;
   
 
   return (
