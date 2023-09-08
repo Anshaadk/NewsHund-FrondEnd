@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import axiosInstance from '../../api/axios';
+import { ToastContainer, toast } from 'react-toastify';
 
 function User_newsbuy({  newsid }) {
   const [show, setShow] = useState(true);
@@ -69,6 +70,7 @@ function User_newsbuy({  newsid }) {
           })
           .catch((error) => {
             console.error('Error creating purchase:', error);
+            toast('Add Some Money')
           });
       })
 
@@ -83,6 +85,7 @@ function User_newsbuy({  newsid }) {
 
   return (
     <>
+    <ToastContainer/>
       <Modal show={show} onHide={handleClose} animation={false}>
         <Modal.Header closeButton>
           <Modal.Title>Modal heading</Modal.Title>

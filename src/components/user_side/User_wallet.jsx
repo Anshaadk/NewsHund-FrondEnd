@@ -23,11 +23,11 @@ function User_wallet({ match }) {
     const fetchWalletData = async () => {
       try {
         // Fetch user-based wallet information
-        const walletResponse = await axiosInstance.get(`user_side/api/wallets/${userId}/`);
+        const walletResponse = await axiosInstance.get(`/user_side/api/wallets/${userId}/`);
         setBalance(walletResponse.data.balance);
 
         // Fetch user transactions
-        const transactionResponse = await axiosInstance.get(`user_side/api/transactions/${userId}/`);
+        const transactionResponse = await axiosInstance.get(`/user_side/api/transactions/${userId}/`);
         const allTransactions = transactionResponse.data;
 
         // Calculate total pages based on the page size
@@ -92,8 +92,8 @@ function User_wallet({ match }) {
   
             // Update wallet balance after successful top-up
             try {
-              const walletTopUpResponse = await axios.post(
-                `http://localhost:8000/user_side/api/walletsadd/${userId}/`,
+              const walletTopUpResponse = await axiosInstance.post(
+                `/user_side/api/walletsadd/${userId}/`,
                 { balance: topUpAmount },
                 { headers: { 'X-CSRFToken': csrftoken } }
               );
