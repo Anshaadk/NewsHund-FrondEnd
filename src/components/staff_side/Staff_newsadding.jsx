@@ -23,8 +23,9 @@ function Staff_newsadding() {
   const [photo2, setPhoto2] = useState(null);
   const [shortDetails, setShortDetails] = useState('');
   const [fullDescription, setFullDescription] = useState('');
+  const [selectedCategory,setSelectedCategoy]=useState()
   const baseURL=import.meta.env.VITE_SOME_KEY
- 
+  let j=null
 
   useEffect(() => {
     // Fetch categories from the backend
@@ -97,6 +98,7 @@ function Staff_newsadding() {
     });
   };
 
+ 
 
   return (
     <div>
@@ -176,10 +178,10 @@ function Staff_newsadding() {
           </div>
           <div className="form-group">
             <label htmlFor="category">Category</label>
-            <select className="form-control" name="category">
+            <select onChange={(e) => setSelectedCategoy( e.target.value)} className="form-control" name="category">
               <option value="">Select a Category</option>
               {categories.map((category) => (
-                <option key={category.id} value={category.id}>
+                <option key={category.id} onChange={(e) =>  console.log('hello')} value={category.id}>
                   {category.cat_name}
                 </option>
               ))}
@@ -189,11 +191,14 @@ function Staff_newsadding() {
             <label htmlFor="subcategory">Subcategory</label>
             <select className="form-control" name="subcategory">
               <option value="">Select a SubCategory</option>
-              {subcategories.map((subcategory) => (
-                <option key={subcategory.id} value={subcategory.id}>
-                  {subcategory.sub_category}
-                </option>
-              ))}
+              {subcategories
+  .filter((subcategory) => subcategory.category == selectedCategory)
+  .map((subcategory) => (
+    <option key={subcategory.id} value={subcategory.id}>
+      {subcategory.sub_category}
+    </option>
+  ))}
+
             </select>
           </div>
           {/* Hidden field to submit the user ID */}

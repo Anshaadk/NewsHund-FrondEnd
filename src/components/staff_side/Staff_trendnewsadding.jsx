@@ -64,14 +64,15 @@ function Staff_trendnewsadding() {
       <div className="container mt-5">
         <form className="custom-form" onSubmit={handleSubmit}>
          
-          <div className="form-group">
-            <label htmlFor="photo1">Photo Adding Place 1</label>
+          <div className="form-group" >
+            <label htmlFor="photo1" >Photo Adding Place 1</label>
             <input
               type="file"
               className="form-control-file"
               id="photo1"
               name="photo1"
               onChange={(e) => setPhoto1(e.target.files[0])}
+              required
             />
           </div>
           <div className="form-group">
@@ -83,6 +84,7 @@ function Staff_trendnewsadding() {
               rows="3"
               value={shortDetails}
               onChange={(e) => setShortDetails(e.target.value)}
+              required
             ></textarea>
           </div>
           <div className="form-group">
@@ -94,6 +96,7 @@ function Staff_trendnewsadding() {
               rows="3"
               value={fullDescription}
               onChange={(e) => setFullDescription(e.target.value)}
+              required
             ></textarea>
           </div>
 

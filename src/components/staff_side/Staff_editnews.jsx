@@ -15,6 +15,7 @@ function Staff_editNews() {
   const [selectedSubcategory, setSelectedSubcategory] = useState('');
   const [photo1, setPhoto1] = useState(null);
   const [photo2, setPhoto2] = useState(null);
+  const [selectingCategory,setSelectingCategoy]=useState()
   
   const [shortDetails, setShortDetails] = useState('');
   const [fullDescription, setFullDescription] = useState('');
@@ -23,7 +24,7 @@ function Staff_editNews() {
   const userJSON = localStorage.getItem('user');
   const user = userJSON ? JSON.parse(userJSON) : null;
   // console.log(user);
-
+  
   useEffect(() => {
     // Fetch the existing news item data using the news ID
     axiosInstance
@@ -41,6 +42,8 @@ function Staff_editNews() {
         setPlan(plan);
         setPhoto1(photo1);
         setPhoto2(photo2);
+        setSelectingCategoy(response.data.category)
+       
       })
       .catch((error) => {
         console.error('Error fetching news item:', error);
@@ -54,8 +57,13 @@ function Staff_editNews() {
     })
     .catch((error) => {
       console.error('Error fetching categories:', error);
-    });
-  
+
+      
+     
+    }
+    
+    );
+    
   // Fetch subcategories from the backend
   axiosInstance
   .get('user_side/api/subcategories/')
@@ -174,7 +182,10 @@ function Staff_editNews() {
             className="form-control"
             name="category"
             value={selectedCategory}
-            onChange={(e) => setSelectedCategory(e.target.value)}
+            onChange={(e) => {
+              setSelectedCategory(e.target.value);
+              setSelectingCategoy(e.target.value);
+            }}
           >
             <option value="">Select a Category</option>
             {categories.map((category) => (
@@ -194,7 +205,9 @@ function Staff_editNews() {
             onChange={(e) => setSelectedSubcategory(e.target.value)}
           >
             <option value="">Select a SubCategory</option>
-            {subcategories.map((subcategory) => (
+            {subcategories
+  .filter((subcategory) => subcategory.category == selectingCategory)
+  .map((subcategory) => (
               <option key={subcategory.id} value={subcategory.id}>
                 {subcategory.sub_category}
               </option>
