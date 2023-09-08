@@ -30,7 +30,8 @@ function Staff_uploads() {
       .catch((error) => {
         console.error('Error fetching news:', error);
       });
-  }, [userID]);
+      
+  });
 
   const handleSearch = (e) => {
     const query = e.target.value;
