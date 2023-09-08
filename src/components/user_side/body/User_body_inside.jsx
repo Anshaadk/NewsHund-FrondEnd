@@ -46,6 +46,9 @@ function User_body_inside() {
   };
 
   const handlePnewsClick = (newsId) => {
+    if (modal) {
+      setModal(false);
+    }
     setSelectedNews(newsId);
     console.log(newsId);
     setModal(true);
