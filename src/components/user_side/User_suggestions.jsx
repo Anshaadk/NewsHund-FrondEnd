@@ -224,7 +224,7 @@ export default function User_suggestions() {
                 <div className="position-relative">
                   <img
                     onClick={() => {
-                      handlePnewsClick(e.id);
+                      handlePnewsClick(e);
                       if (modal) {
                         setModal(false);
                       }

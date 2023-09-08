@@ -11,6 +11,7 @@ function User_newsbuy({  newsid }) {
   const user = userJSON ? JSON.parse(userJSON) : null;
   const userId = user ? user.userID : null;
 
+  console.log(newsid,'newid');
   const handleClose = () => setShow(false);
   const [count, setCount] = useState(0)
 
@@ -31,7 +32,7 @@ function User_newsbuy({  newsid }) {
         setNews(response.data)
         console.log(response.data);
       })
-  })
+  },[])
 
 
   const payment = () => {
@@ -66,6 +67,7 @@ function User_newsbuy({  newsid }) {
 
             axiosInstance.post(`/user_side/api/walletsadd/${userId}/`,{balance:newsid.plan})
             setShow(false); // Close the modal
+            
           })
           .catch((error) => {
             console.error('Error creating purchase:', error);

@@ -10,7 +10,7 @@ function User_body_inside() {
   const filterNews = useSelector((state) => state.FilterNews);
   const [newsdata, setNewsdata] = useState();
   const [modal, setModal] = useState(false);
-  const [selectedNews, setSelectedNews] = useState();
+  const [selectedNews, setSelectedNews] = useState([]);
   
   const [userPnews, setUserpnews] = useState();
   const navigate = useNavigate();
@@ -22,7 +22,7 @@ function User_body_inside() {
     axiosInstance.get(`user_side/api/purchases/${userId}/`).then((response) => {
       setUserpnews(response.data);
     });
-  }, [userId]);
+  });
 
   useEffect(() => {
     if (filterNews) {
@@ -96,7 +96,12 @@ function User_body_inside() {
              ) : (
               <div className='position-relative'>
                 <img
-                  onClick={() => handlePnewsClick(e.id)}
+                  onClick={() => {
+                    handlePnewsClick(e);
+                    if (modal) {
+                      setModal(false);
+                    }
+                  }}
                   style={{ borderRadius: '30px', filter: 'blur(8px)' }}
                   src={e.photo1}
                   className='card-img-top'
