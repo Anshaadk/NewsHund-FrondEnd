@@ -40,8 +40,7 @@ function Staff_editNews() {
         setSelectedCategory(category);
         setSelectedSubcategory(subcategory);
         setPlan(plan);
-        setPhoto1(photo1);
-        setPhoto2(photo2);
+
         setSelectingCategoy(response.data.category)
        
       })
@@ -90,19 +89,37 @@ function Staff_editNews() {
 
     formData.append('category', selectedCategory);
     formData.append('subcategory', selectedSubcategory);
+    if (photo1) {
+      formData.append('photo1', photo1);
+    }
+  
+    if (photo2) {
+      formData.append('photo2', photo2);
+    }
     
     
 
     // Send a PATCH request to the backend to update the news item
     axiosInstance
-      .patch(`/user_side/api/news/${id}/`, formData)
-      .then((response) => {
-        console.log('News item updated:', id);
-        navigate('/staff_upload'); // Navigate back to the news list after successful update
-      })
-      .catch((error) => {
-        console.error('Error updating news item:', error);
-      });
+    .patch(`/user_side/api/news/${id}/`, formData)
+    .then((response) => {
+      console.log('News item updated:', id);
+      navigate('/staff_upload'); // Navigate back to the news list after successful update
+    })
+    .catch((error) => {
+      if (error.response) {
+        // The request was made and the server responded with a status code
+        console.error('Server responded with status code:', error.response.status);
+        console.error('Server response data:', error.response.data);
+      } else if (error.request) {
+        // The request was made but no response was received
+        console.error('No response received from the server');
+      } else {
+        // Something else went wrong
+        console.error('Error:', error.message);
+      }
+    });
+  
   };
 
   const handleSubmit = (event) => {

@@ -22,7 +22,7 @@ function Staff_trendnewsedit() {
       .then((response) => {
         console.log('Response:', response.data);
         const { photo1, short_banner, description } = response.data;
-        setPhoto1(photo1);
+        
         setShortDetails(short_banner);
         setFullDescription(description);
       })
@@ -35,7 +35,10 @@ function Staff_trendnewsedit() {
     e.preventDefault();
     // Create a new FormData object to store the form data
     const formData = new FormData();
-    formData.append('photo1', photo1);
+    if (photo1) {
+      formData.append('photo1', photo1);
+    }
+   
     formData.append('short_banner', shortDetails);
     formData.append('description', fullDescription);
 
