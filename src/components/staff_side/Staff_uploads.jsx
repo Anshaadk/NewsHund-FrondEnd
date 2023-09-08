@@ -122,13 +122,19 @@ function Staff_uploads() {
                   <td>{news.subject}</td>
                   <td>{news.Date}</td>
                   <td>
-                    <Link
-                      className='card_pop btn btn-dark'
-                      to={`/staff_newsedit/${news.id}/`}
-                    >
-                      Edit
-                    </Link>
-                  </td>
+      <Link
+        className='card_pop btn btn-dark'
+        to={`/staff_newsedit/${news.id}/`}
+      >
+        Edit
+      </Link>
+      <button
+        className='card_pop btn btn-danger'
+        onClick={() => handleBlock(news.id)}
+      >
+        Block
+      </button>
+    </td>
                 </tr>
               ))}
             </tbody>
