@@ -3,6 +3,7 @@ import './Staff_newsadding.css';
 import Staff_Navbar from './Staff_Navbar/Staff_Navbar';
 import { Navigate, useNavigate } from 'react-router-dom';
 import axiosInstance from '../../api/axios';
+import { ToastContainer, toast } from 'react-toastify';
 
 function Staff_newsadding() {
   const token = localStorage.getItem('token');
@@ -89,11 +90,13 @@ function Staff_newsadding() {
       } else {
         // Handle errors
         response.json().then((errorData) => {
+          toast('upload photo 2mb below')
           console.error('Form submission failed:', errorData);
         });
       }
     })
     .catch((error) => {
+
       console.error('Error submitting form:', error);
     });
   };
@@ -103,6 +106,7 @@ function Staff_newsadding() {
   return (
     <div>
       <Staff_Navbar />
+      <ToastContainer/>
       <div className="container mt-5">
         <form className="custom-form" onSubmit={handleSubmit}>
           <div className="form-group">

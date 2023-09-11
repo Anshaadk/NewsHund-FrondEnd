@@ -81,7 +81,7 @@ const Staff_profileupdate = () => {
       })
       .catch((error) => {
         console.error('Error updating profile:', error);
-        toast.error('Error updating profile!');
+        toast.error('Error updating profile! upload 2mb max image');
       });
   };
 

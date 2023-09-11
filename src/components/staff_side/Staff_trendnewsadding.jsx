@@ -4,6 +4,7 @@ import Staff_Navbar from './Staff_Navbar/Staff_Navbar';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import axiosInstance from '../../api/axios';
+import { ToastContainer, toast } from 'react-toastify';
 
 function Staff_trendnewsadding() {
   const token = localStorage.getItem('token');
@@ -48,10 +49,12 @@ function Staff_trendnewsadding() {
         navigate('/staff_upload_trend');
       } else {
         // Handle errors
+        toast('upload photo 2mb below')
         console.error('Form submission failed:', response.data);
       }
     })
     .catch((error) => {
+      toast('upload photo 2mb below')
       console.error('Error submitting form:', error);
     });
   
@@ -61,6 +64,7 @@ function Staff_trendnewsadding() {
   return (
     <div>
       <Staff_Navbar />
+        <ToastContainer/>
       <div className="container mt-5">
         <form className="custom-form" onSubmit={handleSubmit}>
          

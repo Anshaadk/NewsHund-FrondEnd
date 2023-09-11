@@ -54,7 +54,7 @@ function Staff_trendnewsedit() {
       .catch((error) => {
         console.error('Error updating news article:', error);
         // Handle error (e.g., show an error message)
-        toast('please add jpg or jpeg file')
+        toast('please add jpg or jpeg file and 2mb max')
       });
   };
   

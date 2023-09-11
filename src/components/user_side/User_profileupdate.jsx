@@ -90,6 +90,7 @@ const User_profileupdate = () => {
         
       })
       .catch((error) => {
+        toast('2Mb Maximum')
         console.error('Error updating profile:', error);
         toast.error('Error updating profile!');
       });

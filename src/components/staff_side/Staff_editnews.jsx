@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import axiosInstance from '../../api/axios';
+import { ToastContainer, toast } from 'react-toastify';
 
 function Staff_editNews() {
   const baseURL=import.meta.env.VITE_SOME_KEY
@@ -108,13 +109,16 @@ function Staff_editNews() {
     })
     .catch((error) => {
       if (error.response) {
+        toast('upload photo 2mb below')
         // The request was made and the server responded with a status code
         console.error('Server responded with status code:', error.response.status);
         console.error('Server response data:', error.response.data);
       } else if (error.request) {
+        toast('upload photo 2mb below')
         // The request was made but no response was received
         console.error('No response received from the server');
       } else {
+        toast('upload photo 2mb below')
         // Something else went wrong
         console.error('Error:', error.message);
       }
@@ -133,6 +137,7 @@ function Staff_editNews() {
 
   return (
     <div className="container">
+      <ToastContainer/>
       <h1>Edit News Item</h1>
       <form className="mt-5" onSubmit={handleSubmit} encType="multipart/form-data">
 
