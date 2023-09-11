@@ -2,6 +2,8 @@ import React, { useCallback, useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import axiosInstance from '../../api/axios';
+import { ToastContainer, toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 function User_newsbuy({  newsid }) {
   const [show, setShow] = useState(true);
@@ -13,6 +15,7 @@ function User_newsbuy({  newsid }) {
 
   console.log(newsid,'newid');
   const handleClose = () => setShow(false);
+  const navigate=useNavigate()
   const [count, setCount] = useState(0)
 
   useEffect(() => {
@@ -70,11 +73,14 @@ function User_newsbuy({  newsid }) {
             
           })
           .catch((error) => {
+            toast('Please Login First')
             console.error('Error creating purchase:', error);
           });
       })
 
       .catch((error) => {
+        toast('Please Login First')
+        navigate('/')
         console.error('Error making wallet transaction:', error);
       });
   };
@@ -85,6 +91,7 @@ function User_newsbuy({  newsid }) {
 
   return (
     <>
+    <ToastContainer/>
       <Modal show={show} onHide={handleClose} animation={false}>
         <Modal.Header closeButton>
           <Modal.Title>Modal heading</Modal.Title>
