@@ -302,7 +302,7 @@ function User_Navbar() {
     Home
   </NavLink>
 </li>
-
+{ userId &&
 <li className="nav-item">
   <NavLink
     to="/suggestions"
@@ -312,6 +312,7 @@ function User_Navbar() {
     Suggestions
   </NavLink>
 </li>
+}
 </ul>
 }
                             <div className="text-white m-1 p-3">
