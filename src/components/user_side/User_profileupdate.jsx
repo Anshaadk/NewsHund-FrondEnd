@@ -77,8 +77,8 @@ const User_profileupdate = () => {
     
     
 
-    axios
-      .patch(`http://localhost:8000/user_side/api/user-profile/${userId}/`, formData)
+    axiosInstance
+      .patch(`/user_side/api/user-profile/${userId}/`, formData)
       .then((response) => {
         console.log(formData);
         console.log('Profile updated successfully!');
