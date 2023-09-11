@@ -192,7 +192,11 @@ function User_Navbar() {
                 <div class="dropdown text-end">
                     
                     <a style={{backgroundColor:'transparent'}} className="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                    {userData.profile_image ?
+                               <img style={{width:'30px'}} src={userData.profile_image} alt="" />
+                               :
                                <img style={{width:'30px'}} src="https://th.bing.com/th?q=Profile+Vector&w=120&h=120&c=1&rs=1&qlt=90&cb=1&dpr=1.5&pid=InlineBlock&mkt=en-IN&cc=IN&setlang=en&adlt=moderate&t=1&mw=247" alt="" />
+                               }
                            </a>
                                 
 
