@@ -141,6 +141,12 @@ const ChatApp = () => {
     const user = userJSON ? JSON.parse(userJSON) : null;
     const userId = user ? user.userID : null;
     const { phone, name, email, username } = user || { name: '', email: '', username: '', phone: '' };
+    
+    if (userId === null) {
+      setTimeout(() => {
+        navigate('/user_login');
+      })
+    }
 
     useEffect(() => {
         // Fetch current user's data

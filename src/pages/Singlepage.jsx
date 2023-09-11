@@ -296,13 +296,13 @@ function Singlepage() {
           
           <section className="text-center border-top border-bottom py-4 mb-4">
           {renderRatingStars()}
-        <button
+       {userId&& <button
           type="button"
           className="btn btn-primary me-1 "
           onClick={openCommentModal}
         >
           <i className="fas fa-comments me-2 "></i>Add comment
-        </button>
+        </button>}
       </section>
           
       <Modal show={commentModalOpen} onHide={closeCommentModal}>

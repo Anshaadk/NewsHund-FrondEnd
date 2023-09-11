@@ -18,17 +18,25 @@ function User_Profile() {
     const location = useLocation();
     const userJSON = localStorage.getItem('user');
     const user = userJSON ? JSON.parse(userJSON) : null;
+    if (!token) {
+      setTimeout(() => {
+        console.log('helo');
+        navigate('/');
+      })
+    }
     const { phone, name, email, username, profile_image_url } = user
       ? user
       : { name: '', email: '', username: '', phone: '', phone1: '', profile_image_url: 'path/to/placeholder_image.jpg' };
     const pro=profile_image_url
-    console.log(user.phone);
-    let userID=user.userID
-    console.log(userID,'_____SDSD');
-    console.log(user,"_____akjsndiasdnaiu_______");
-    console.log(user);
+    
+    const userID=user.userID
+    
+
+   
 
     const [followingList, setFollowingList] = useState([]);
+    
+
     
     useEffect(() => {
       // Fetch user data from the backend API
@@ -66,15 +74,15 @@ function User_Profile() {
             console.error('Error fetching user data:', error);
           });
       }, [user.userID]);
-      console.log(userData);
+      
       
       var t = userData.subscription_expiration
-      console.log(t);
+      
       var dateObject = new Date(t);
       var localizedDateString = dateObject.toLocaleDateString();
   
       const handleUnfollowClick = (f) => {
-        console.log(f.followed_user,userID);
+        // console.log(f.followed_user,userID);
         axiosInstance
           .delete(`/user_side/follow/${userID}/${f.followed_user}/`)
           .then((response) => {
