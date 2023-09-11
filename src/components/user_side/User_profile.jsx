@@ -18,10 +18,12 @@ function User_Profile() {
     const location = useLocation();
     const userJSON = localStorage.getItem('user');
     const user = userJSON ? JSON.parse(userJSON) : null;
-    if (!token) {
+    if (!user) {
       setTimeout(() => {
         console.log('helo');
         navigate('/');
+        window.location.reload();
+        
       })
     }
     const { phone, name, email, username, profile_image_url } = user
