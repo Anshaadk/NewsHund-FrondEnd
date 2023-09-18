@@ -40,6 +40,7 @@ export default function User_suggestions() {
         const followingResponse = await axiosInstance.get(`/user_side/followings/${userId}/`);
         const followingData = followingResponse.data;
         setFollowingList(followingData);
+        
         console.log('Followings:', followingData);
   
         // Fetch trending news data

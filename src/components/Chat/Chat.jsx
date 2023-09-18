@@ -141,7 +141,7 @@ const ChatApp = () => {
     const user = userJSON ? JSON.parse(userJSON) : null;
     const userId = user ? user.userID : null;
     const { phone, name, email, username } = user || { name: '', email: '', username: '', phone: '' };
-    
+    const [FollowingList,setFollowingList]=useState([])
     if (userId === null) {
       setTimeout(() => {
         navigate('/user_login');
@@ -149,20 +149,33 @@ const ChatApp = () => {
     }
 
     useEffect(() => {
-        // Fetch current user's data
-        axiosInstance.get('/user_side/api/userlisting/')
-            .then(response => {
-                const userData = response.data.find(user => user.id == userId);
-                console.log(userData);
-                setCurrentUser(userData);
-                setUsers(response.data);
-                console.log(users, 'nkan');
+      const fetchData = async () => {
+        try {
+          // Fetch current user's data
+          const response = await axiosInstance.get('/user_side/api/userlisting/');
+          const userData = response.data.find(user => user.id === userId);
+          setCurrentUser(userData);
+          setUsers(response.data);
+    
+          // Fetch the list of followings for the user
+          const followingResponse = await axiosInstance.get(`/user_side/followings/${userId}/`);
+          const followingData = followingResponse.data;
 
-            })
-            .catch(error => {
-                console.error('Error fetching user data:', error);
-            });
-    }, []);
+          const filtereduser = followingData.filter((news) =>
+          followingData.some((following) => following.followed_user === userId)
+        );
+          setFollowingList(filtereduser);
+          console.log(filtereduser,'joo');
+          
+        } catch (error) {
+          console.error('Error fetching user data:', error);
+        }
+      };
+    
+      fetchData();
+    }, [userId]);
+
+    
 
     const handleUserClick = (username) => {
         setSelectedUser(username.id);
@@ -180,30 +193,34 @@ const ChatApp = () => {
           <div className="card p-4">
             <div className="card-body">
               <ul className="list-unstyled mb-0">
-                {users.map(user => {
-                  if (user.is_staffs === true) {
-                    return (
-                      <li key={user.id} className="p-2 border-bottom" style={{ backgroundColor: "#eee" }}>
-                        <a href="#!" className="d-flex justify-content-between" onClick={() => handleUserClick(user)}>
-                          <div className="d-flex flex-row">
-                            <img
-                              src={user.profile_image? user.profile_image :" https://th.bing.com/th/id/OIP.tQ7ULylwMqPFwFtVdCN9mgAAAA?pid=ImgDet&rs=1" }
-                              alt="avatar"
-                              className=" shadow-1-strong rounded-circle avatar-image"
-                              width="60"
-                            />
-                            <div className="pt-1">
-                              <p className="fw-bold mb-0">{user.username}</p>
-                              <p className="small text-muted">{user.is_staffs ? 'Active' : 'Invalid'}</p>
-                            </div>
-                          </div>
-                        </a>
-                      </li>
-                    );
-                  } else {
-                    return null; // Skip rendering non-staff users
-                  }
-                })}
+              {users.map(user => {
+  // Check if the user is a staff and if their ID exists in the filtereduser array
+  const shouldDisplay = user.is_staffs === true && FollowingList.some(m => m.followed_user === user.id);
+
+  if (shouldDisplay) {
+    return (
+      <li key={user.id} className="p-2 border-bottom" style={{ backgroundColor: "#eee" }}>
+        <a href="#!" className="d-flex justify-content-between" onClick={() => handleUserClick(user)}>
+          <div className="d-flex flex-row">
+            <img
+              src={user.profile_image ? user.profile_image : "https://th.bing.com/th/id/OIP.tQ7ULylwMqPFwFtVdCN9mgAAAA?pid=ImgDet&rs=1"}
+              alt="avatar"
+              className=" shadow-1-strong rounded-circle avatar-image"
+              width="60"
+            />
+            <div className="pt-1">
+              <p className="fw-bold mb-0">{user.username}</p>
+              <p className="small text-muted">{user.is_staffs ? 'Active' : 'Invalid'}</p>
+            </div>
+          </div>
+        </a>
+      </li>
+    );
+  } else {
+    return null; // Skip rendering non-staff users or users not in the filtered list
+  }
+})}
+
               </ul>
             </div>
           </div>
