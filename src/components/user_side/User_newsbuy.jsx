@@ -73,13 +73,18 @@ function User_newsbuy({  newsid }) {
             
           })
           .catch((error) => {
-            toast('Please Login First')
+            toast('Please Rechage Your Wallet')
             console.error('Error creating purchase:', error);
           });
       })
 
       .catch((error) => {
+        if (userId) {
+          toast('Please Rechage Your Wallet')
+          
+        }else{
         toast('Please Login First')
+        }
         navigate('/')
         console.error('Error making wallet transaction:', error);
       });
