@@ -134,8 +134,8 @@ function Staff_login() {
                 </div>
                 <div className="card-form card-forms">
                     <p className="text-center text-muted fs-08 mt-3">Author Login</p>
-                    <div className="d-flex align-items-center input-field">
-                        <span className="far fa-envelope text-muted"></span>
+                    <div style={{padding:'2px'}} className="d-flex align-items-center input-field">
+                        <span className="far fa-envelope text-muted">&nbsp;&nbsp;</span>
                         <input
                             type="email"
                             placeholder="Email"
@@ -146,8 +146,8 @@ function Staff_login() {
                         />
                         </div>
 
-                        <div className="d-flex align-items-center input-field">
-                        <span className="fas fa-key text-muted"></span>
+                        <div style={{padding:'2px'}} className="d-flex align-items-center input-field">
+                        <span className="fas fa-key text-muted">&nbsp;&nbsp;</span>
                         <input
                             type="password"
                             placeholder="Password"
@@ -159,8 +159,7 @@ function Staff_login() {
                         </div>
 
                     <div className="d-flex align-items-center">
-                        <input type="checkbox" name="remember" id="remember"/>
-                        <label className="text-muted ms-2" for="remember">Remember me</label>
+                        
                     </div>
                     <div className="d-flex justify-content-center">
                     <div className="btn btn-primary mt-3" onClick={handleSubmit}>Sign In</div>

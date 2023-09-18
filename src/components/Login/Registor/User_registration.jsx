@@ -203,8 +203,9 @@ function User_registration() {
                             </div>
                             <br />
                             
-                        <div className="d-flex align-items-center input-field">
-                            <span className="fas fa-at text-muted"></span>
+                        <div style={{padding:'2px'}} className="d-flex align-items-center input-field">
+                        &nbsp;<span className="fas fa-at text-muted">&nbsp;&nbsp;&nbsp;</span>
+                            
                             <input
                   type="email"
                   className="form-control"
@@ -212,10 +213,10 @@ function User_registration() {
                   value={email}
                   onChange={handleEmailChange}
                   required
-                />
+                />&nbsp;
                         </div>
-                        <div className="d-flex align-items-center input-field">
-                            <span className="fas fa-user text-muted"></span>
+                        <div style={{padding:'2px'}} className="d-flex align-items-center input-field">
+                        &nbsp;<span className="fas fa-user text-muted">&nbsp;&nbsp;&nbsp;</span>
                             <input
                   type="text"
                   className="form-control"
@@ -223,36 +224,34 @@ function User_registration() {
                   value={username}
                   onChange={handleUsernameChange}
                   required
-                />
+                />&nbsp;
                    
-                        </div>
-                        <div className="d-flex align-items-center input-field">
-                            <span className="far fas fa-key text-muted"></span>
-                            <input
+                        </div >
+                        <div style={{padding:'2px'}} className="d-flex align-items-center input-field">
+                        &nbsp;<span className="far fas fa-key text-muted">&nbsp;&nbsp;&nbsp;</span>
+                            <input 
                   type="password"
                   className='form-control'
                   placeholder="password"
                   value={password}
                   onChange={handlePasswordChange}
                   required
-                />
-                        </div>  
-                        <div className="d-flex align-items-center input-field">
-                            <span className="fas fa-retweet text-muted"></span>
+                />&nbsp;
+                
+                        </div>
+                        <div style={{padding:'2px'}} className="d-flex align-items-center input-field">
+                        &nbsp; <span className="fas fa-retweet text-muted">&nbsp;&nbsp;&nbsp;</span>
                             
-                            <input
+                            <input 
                   type="password"
                   className="form-control"
                   placeholder="Confirm password"
                   value={confirmPassword}
                   onChange={handleConfirmPasswordChange}
                   required
-                />
+                />&nbsp;
                         </div>
-                        <div className="d-flex align-items-center">
-                            <input type="checkbox" name="remember" id="remember"/>
-                            <label className="text-muted ms-2" for="remember">Remember me</label>
-                        </div>
+                        
                         <div className="d-flex justify-content-center">
                             <button type='submit' className="btn btn-primary mt-3">Submit</button>
                             
