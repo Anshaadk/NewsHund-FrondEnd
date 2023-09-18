@@ -126,7 +126,7 @@ function App() {
             </>
           )}
 
-    <Route path="/not_authorized" element={<NotAuthorizedPage />} />
+    <Route path="*" element={<NotAuthorizedPage />} />
         
 
 
