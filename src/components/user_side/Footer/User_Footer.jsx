@@ -3,26 +3,25 @@ import { Link } from 'react-router-dom'
 
 function User_Footer() {
   return (
-    <div>
+    <div >
 
 
-<div className="container my-5 ">
 
 
-  <footer
+  <footer 
           className="text-center text-lg-start text-white"
           style={{backgroundColor: '#1c2331'}}
           >
     
     <section
              className="d-flex justify-content-between p-4"
-             style={{backgroundColor: 'black'}}
+             style={{backgroundColor: 'white',borderRadius:'0px' }}
              >
       
     </section>
     
-    <section className="">
-      <div className="container text-center text-md-start mt-5">
+    <section  className="">
+      <div  className="container text-center text-md-start mt-5">
        
         <div className="row mt-3">
           
@@ -42,7 +41,7 @@ function User_Footer() {
           
 
           
-          <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+          <div  className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
             
             <h6 className="text-uppercase fw-bold">Useful links</h6>
             <hr
@@ -91,7 +90,7 @@ function User_Footer() {
 
 </div>
 
-    </div>
+   
   )
 }
 

@@ -13,19 +13,19 @@ function User_Profile() {
 
     const [userData, setUserData] = useState({});
     const [showModal, setShowModal] = useState(false);
-    const navigate = useNavigate();
+    const navigate = useNavigate({});
     const token = localStorage.getItem('token');
     const location = useLocation();
     const userJSON = localStorage.getItem('user');
     const user = userJSON ? JSON.parse(userJSON) : null;
     if (!user) {
       setTimeout(() => {
-        console.log('helo');
-        navigate('/');
-        window.location.reload();
-        
-      })
+        console.log('hello');
+        window.location.href = '/'; // Redirect to the root location
+      }, 10);
     }
+    
+    
     const { phone, name, email, username, profile_image_url } = user
       ? user
       : { name: '', email: '', username: '', phone: '', phone1: '', profile_image_url: 'path/to/placeholder_image.jpg' };
