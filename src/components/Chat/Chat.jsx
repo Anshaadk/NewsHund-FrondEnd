@@ -164,7 +164,7 @@ const ChatApp = () => {
           const filtereduser = followingData.filter((news) =>
           followingData.some((following) => following.followed_user === userId)
         );
-          setFollowingList(filtereduser);
+          setFollowingList(followingData);
           console.log(filtereduser,'joo');
           
         } catch (error) {
