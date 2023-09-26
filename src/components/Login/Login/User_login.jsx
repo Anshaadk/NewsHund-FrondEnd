@@ -16,8 +16,15 @@ function User_login() {
   const [password, setPassword] = useState('');
   const [ user, setUser ] = useState([]);
   const navigate = useNavigate();
+  const k =localStorage.getItem('token')
   // -----------------------------------Google--------------------
- 
+  if (k) {
+    
+  
+  setTimeout(()=>{
+    navigate('/')
+  })
+}
   const gLogin = async (accessToken) => {
     try {
       const res = await axios.get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${accessToken}`, {
